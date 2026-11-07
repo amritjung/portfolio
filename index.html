@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amrit Thapa — PHP &amp; Laravel Developer</title>
+  <meta name="description" content="Amrit Thapa — Brisbane-based PHP & Laravel developer building full-stack web products." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="#top" class="logo">amrit<span>.</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">◐</button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow mono"><span class="dot"></span> Available for work · Brisbane, AU</p>
+      <h1 class="hero-title">
+        <span class="line"><span>I build</span></span>
+        <span class="line"><span class="outline">web things</span></span>
+        <span class="line"><span>that <em class="accent rotator" id="rotator">ship.</em></span></span>
+      </h1>
+      <div class="hero-foot">
+        <p class="hero-intro">I'm <strong>Amrit Thapa</strong> — a PHP &amp; Laravel developer turning ideas into fast, tidy, full-stack products. From e-commerce to browser games, I care about clean code and interfaces people enjoy using.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary magnetic">See my work <span>↘</span></a>
+          <a href="#contact" class="btn btn-ghost magnetic">Say hello</a>
+        </div>
+      </div>
+      <div class="hero-badge" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs><path id="circle" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" /></defs>
+          <text><textPath href="#circle">LARAVEL · PHP · MYSQL · FULL-STACK · LARAVEL · PHP · </textPath></text>
+        </svg>
+        <span class="badge-core">⌘</span>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Laravel</span><i>✺</i><span>PHP 8</span><i>✺</i><span>Livewire</span><i>✺</i><span>Filament</span><i>✺</i><span>Tailwind</span><i>✺</i><span>MySQL</span><i>✺</i><span>WordPress</span><i>✺</i><span>Vue.js</span><i>✺</i><span>React</span><i>✺</i><span>Node.js</span><i>✺</i><span>AWS</span><i>✺</i>
+        <span>Laravel</span><i>✺</i><span>PHP 8</span><i>✺</i><span>Livewire</span><i>✺</i><span>Filament</span><i>✺</i><span>Tailwind</span><i>✺</i><span>MySQL</span><i>✺</i><span>WordPress</span><i>✺</i><span>Vue.js</span><i>✺</i><span>React</span><i>✺</i><span>Node.js</span><i>✺</i><span>AWS</span><i>✺</i>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+      <div class="section-label mono">01 / About</div>
+      <div class="about-grid">
+        <h2 class="big-statement reveal">From <span class="accent">Kathmandu</span> to <span class="accent">London</span> to <span class="accent">Brisbane</span> — writing code that solves real problems.</h2>
+        <div class="about-copy reveal">
+          <p>I'm a full-stack web developer with a Master of Information Technology from James Cook University. My home turf is the Laravel ecosystem — PHP, Livewire, Filament, MySQL and RESTful APIs — with hands-on work in Vue.js, React and AWS.</p>
+          <p>I've worked with teams in Nepal, the UK and Australia, which taught me to communicate clearly, adapt fast, and treat requirements like a business analyst as much as a developer.</p>
+          <div class="stats">
+            <div><strong class="counter" data-target="3">0</strong><span>Countries worked in</span></div>
+            <div><strong class="counter" data-target="5">0</strong><span>Featured builds</span></div>
+            <div><strong class="counter" data-target="10" data-suffix="+">0</strong><span>Tools in daily use</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="section work" id="work">
+      <div class="section-head">
+        <div class="section-label mono">02 / Selected work</div>
+        <h2 class="section-title reveal">Things I've<br /><span class="outline">built lately</span></h2>
+      </div>
+
+      <div class="filters mono" role="tablist">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="laravel">Laravel</button>
+        <button class="filter" data-filter="wordpress">WordPress</button>
+        <button class="filter" data-filter="frontend">Front-end</button>
+        <button class="filter" data-filter="design">Design</button>
+      </div>
+
+      <div class="projects">
+        <!-- randoJeans -->
+        <article class="project reveal" data-cat="laravel">
+          <div class="project-visual v-denim">
+            <div class="denim-tag"><span>rando</span>JEANS</div>
+            <div class="stitch"></div>
+          </div>
+          <div class="project-body">
+            <div class="project-meta mono"><span>01</span><span>E-commerce · 2026</span></div>
+            <h3>randoJeans</h3>
+            <p>A denim e-commerce store with a Filament admin panel, live Livewire filtering with URL state, a full-bleed product gallery with zoom/pan lightbox, and dependent waist/inseam size selectors. Cart supports guest sessions and logged-in users with merge-on-login.</p>
+            <ul class="tags mono"><li>PHP 8.4</li><li>Laravel 13</li><li>Livewire</li><li>Filament v5</li><li>Tailwind v4</li></ul>
+            <a href="#" class="project-link">View case study <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- Opal Rush -->
+        <article class="project reveal" data-cat="frontend">
+          <div class="project-visual v-slots">
+            <div class="reels" id="reels">
+              <div class="reel"><span>💎</span></div>
+              <div class="reel"><span>🍒</span></div>
+              <div class="reel"><span>⭐</span></div>
+            </div>
+            <button class="spin-btn mono" id="spinBtn">SPIN</button>
+          </div>
+          <div class="project-body">
+            <div class="project-meta mono"><span>02</span><span>Browser game · 2026</span></div>
+            <h3>Opal Rush</h3>
+            <p>A free-play, Australian-style pokie game for the browser — reels, paylines, scatters and free spins built to follow classic slot logic. No real money, just smooth animation and satisfying feedback. (Try the mini reel above.)</p>
+            <ul class="tags mono"><li>JavaScript</li><li>Vite</li><li>Canvas/CSS animation</li><li>Game logic</li></ul>
+            <a href="#" class="project-link">Play the demo <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- Lendly -->
+        <article class="project reveal" data-cat="wordpress">
+          <div class="project-visual v-loan">
+            <div class="loan-card">
+              <span class="mono">Borrow</span>
+              <strong id="loanAmt">$12,500</strong>
+              <input type="range" min="2000" max="50000" step="500" value="12500" id="loanRange" aria-label="Loan amount demo" />
+              <div class="loan-row mono"><span>Repayment</span><b id="loanRepay">$268/mo</b></div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-meta mono"><span>03</span><span>WordPress · 2026</span></div>
+            <h3>Lendly</h3>
+            <p>A personal-loans marketing site built the "company way" — DDEV (Docker), Bedrock and Git — with a hand-coded custom PHP theme and a custom plugin powering the loan calculator and application flow. A practice build, not a real lender.</p>
+            <ul class="tags mono"><li>WordPress</li><li>Bedrock</li><li>DDEV</li><li>Custom theme</li><li>Custom plugin</li></ul>
+            <a href="#" class="project-link">View project <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- Immigration -->
+        <article class="project reveal" data-cat="laravel">
+          <div class="project-visual v-migrate">
+            <div class="path">
+              <div class="step done"><i>✓</i><span>Eligibility</span></div>
+              <div class="step done"><i>✓</i><span>Skills assessment</span></div>
+              <div class="step active"><i>3</i><span>Expression of interest</span></div>
+              <div class="step"><i>4</i><span>Visa lodged</span></div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-meta mono"><span>04</span><span>Platform · In progress</span></div>
+            <h3>Australian Migration Platform</h3>
+            <p>A platform to guide people through Australian visa pathways — eligibility checks, step-by-step progress tracking and document checklists — designed with a clean service architecture so agents and applicants share one source of truth.</p>
+            <ul class="tags mono"><li>Laravel</li><li>MySQL</li><li>REST API</li><li>System design</li></ul>
+            <a href="#" class="project-link">View project <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- Tharu Garden -->
+        <article class="project reveal" data-cat="design">
+          <div class="project-visual v-menu">
+            <div class="menu-card">
+              <small class="mono">Hotel</small>
+              <h4>Tharu Garden</h4>
+              <small class="mono">Sauraha · Chitwan</small>
+              <hr />
+              <p><span>Dal Bhat Set</span><span>650</span></p>
+              <p><span>Tharu Thali</span><span>850</span></p>
+              <p><span>Chicken Momo</span><span>420</span></p>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-meta mono"><span>05</span><span>Print &amp; brand · 2026</span></div>
+            <h3>Hotel Tharu Garden Menus</h3>
+            <p>A full menu redesign for a hotel restaurant in Sauraha, Chitwan — a consistent visual system with clear hierarchy and readable pricing, rolled out across every menu page.</p>
+            <ul class="tags mono"><li>Layout</li><li>Typography</li><li>Brand system</li></ul>
+            <a href="#" class="project-link">See the menus <span>→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section skills" id="skills">
+      <div class="section-label mono">03 / Skills &amp; stack</div>
+      <h2 class="section-title reveal">My <span class="outline">toolbox</span></h2>
+      <div class="skill-grid">
+        <div class="skill-card reveal">
+          <span class="skill-icon">⚙︎</span>
+          <h3>Back-end</h3>
+          <ul><li>PHP 8</li><li>Laravel</li><li>Livewire</li><li>RESTful APIs</li><li>Node.js</li></ul>
+        </div>
+        <div class="skill-card reveal">
+          <span class="skill-icon">◧</span>
+          <h3>Front-end</h3>
+          <ul><li>Tailwind CSS</li><li>Alpine.js</li><li>Vue.js</li><li>React</li><li>React Native</li></ul>
+        </div>
+        <div class="skill-card reveal">
+          <span class="skill-icon">▤</span>
+          <h3>Data &amp; CMS</h3>
+          <ul><li>MySQL</li><li>Eloquent ORM</li><li>Filament</li><li>WordPress</li><li>Bedrock</li></ul>
+        </div>
+        <div class="skill-card reveal">
+          <span class="skill-icon">☁︎</span>
+          <h3>Tools &amp; delivery</h3>
+          <ul><li>Git &amp; GitHub</li><li>Docker / DDEV</li><li>Laravel Herd</li><li>AWS</li><li>Agile · Jira</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section experience" id="experience">
+      <div class="section-label mono">04 / Experience &amp; education</div>
+      <h2 class="section-title reveal">The <span class="outline">journey</span></h2>
+      <ol class="timeline">
+        <li class="reveal">
+          <div class="t-when mono">Brisbane, AU</div>
+          <div class="t-what">
+            <h3>Web Developer Intern — <span class="accent">Lance Montana</span></h3>
+            <p>Built and maintained Laravel features end-to-end, working in feature branches with code review and Agile ceremonies.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <div class="t-when mono">Queensland, AU</div>
+          <div class="t-what">
+            <h3>Master of Information Technology — <span class="accent">James Cook University</span></h3>
+            <p>Postgraduate study in software development, systems analysis, databases and IT project management.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <div class="t-when mono">London, UK</div>
+          <div class="t-what">
+            <h3>Developer — <span class="accent">Wonderful Payments</span></h3>
+            <p>Contributed to a fintech payments product, working with APIs and data flows where accuracy and reliability matter.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <div class="t-when mono">Kathmandu, NP</div>
+          <div class="t-what">
+            <h3>Web Developer — <span class="accent">Young Minds Creation</span></h3>
+            <p>Built PHP websites and web apps for clients, from requirements through to launch and support.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="section-label mono">05 / Contact</div>
+      <h2 class="contact-title reveal">Let's build<br /><span class="accent">something</span> <span class="outline">together.</span></h2>
+      <div class="contact-grid">
+        <div class="contact-links reveal">
+          <p>Open to developer roles in Brisbane and remote. Got a project or a position in mind? Drop me a line.</p>
+          <a href="mailto:amritthapa555@gmail.com" class="contact-big">amritthapa555@gmail.com <span>↗</span></a>
+          <div class="socials mono">
+            <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="assets/Amrit-Thapa-CV.pdf" target="_blank" rel="noopener">Download CV ↗</a>
+          </div>
+        </div>
+        <form class="contact-form reveal" id="contactForm">
+          <label><span class="mono">Name</span><input type="text" name="name" required placeholder="Your name" /></label>
+          <label><span class="mono">Email</span><input type="email" name="email" required placeholder="you@company.com" /></label>
+          <label><span class="mono">Message</span><textarea name="message" rows="5" required placeholder="Tell me about the role or project…"></textarea></label>
+          <button type="submit" class="btn btn-primary magnetic">Send message <span>→</span></button>
+          <p class="form-status mono" id="formStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer mono">
+    <span>© <span id="year"></span> Amrit Thapa</span>
+    <span>Made in Brisbane ✺</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
