@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Open Banking Payment Gateway — Case Study · Amrit Thapa</title>
+  <meta name="description" content="How I architected and built the MVP of a Laravel Open Banking payment gateway integrated with 18+ UK banks, designed for PSD2 and Strong Customer Authentication." />
+  <meta name="author" content="Amrit Thapa" />
+  <link rel="canonical" href="https://amritthapa.com/work/open-banking-gateway/" />
+
+  <!-- Same security policy as the home page, minus the form/captcha parts -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src 'self';
+    style-src 'self';
+    font-src 'self';
+    img-src 'self' data:;
+    manifest-src 'self';
+    form-action 'none';
+    base-uri 'none';
+    object-src 'none'
+  " />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Icons -->
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#141210" />
+
+  <!-- Structured data: an article written by me, about my work -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Open Banking Payment Gateway — Case Study",
+      "description": "The MVP of a Laravel Open Banking payment gateway integrated with 18+ UK banks, designed for PSD2 and Strong Customer Authentication.",
+      "url": "https://amritthapa.com/work/open-banking-gateway/",
+      "datePublished": "2026-11-09T12:00:00+10:00",
+      "dateModified": "2026-11-09T12:00:00+10:00",
+      "author": {
+        "@type": "Person",
+        "name": "Amrit Thapa",
+        "url": "https://amritthapa.com/"
+      }
+    }
+  </script>
+
+  <link rel="preload" href="/assets/fonts/syne-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/styles.css?v=202611091600" />
+</head>
+
+<body class="case-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="cursor" aria-hidden="true"></div>
+
+
+  <!-- ============================================================
+       NAVIGATION (case-study version)
+       ============================================================ -->
+  <header class="nav">
+    <a href="/" class="logo">amrit<span>.</span></a>
+
+    <nav class="case-nav" aria-label="Case study navigation">
+      <a href="/#work">← All work</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+
+    <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme">◐</button>
+  </header>
+
+
+  <main id="main" tabindex="-1">
+
+    <!-- ============================================================
+         INTRO
+         ============================================================ -->
+    <section class="case-hero">
+      <p class="eyebrow mono">Case study · Fintech MVP · Wonderful Payments</p>
+
+      <h1 class="case-title">
+        Open Banking<br />
+        <span class="outline">payment</span> <span class="accent">gateway</span>
+      </h1>
+
+      <p class="case-lead">
+        The MVP of a Laravel payment gateway that lets customers pay straight from their bank
+        account — integrated with <strong>18+ UK banks</strong> and designed for PSD2 and Strong
+        Customer Authentication from the ground up.
+      </p>
+
+      <!-- Quick facts -->
+      <dl class="case-meta">
+        <div>
+          <dt class="mono">Role</dt>
+          <dd>Open Banking Integration Engineer — architected and built the MVP</dd>
+        </div>
+        <div>
+          <dt class="mono">Company</dt>
+          <dd>Wonderful Payments · London, UK (remote)</dd>
+        </div>
+        <div>
+          <dt class="mono">Timeline</dt>
+          <dd>Nov 2020 – Sep 2022</dd>
+        </div>
+        <div>
+          <dt class="mono">Stack</dt>
+          <dd>PHP (vanilla, then Laravel), MySQL, REST / JSON, OAuth 2.0, Webhooks, Blade, JavaScript</dd>
+        </div>
+      </dl>
+    </section>
+
+
+    <!-- ============================================================
+         KEY NUMBERS
+         ============================================================ -->
+    <section class="case-section">
+      <ul class="case-stats">
+        <li><strong>18+</strong><span>UK banks integrated</span></li>
+        <li><strong>MVP</strong><span>designed for PSD2 from day one</span></li>
+        <li><strong>SCA</strong><span>Strong Customer Authentication</span></li>
+        <li><strong>2 yrs</strong><span>freelance, then full-time</span></li>
+      </ul>
+    </section>
+
+
+    <!-- ============================================================
+         01 · THE CHALLENGE
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">01 / The challenge</div>
+      <div class="case-copy">
+        <h2>One payment flow, many different banks</h2>
+        <p>
+          Open Banking lets a customer pay a business directly from their bank account, without
+          a card. The payment is started through each bank's payment initiation (PISP) API and
+          the customer approves it inside their own banking app or website.
+        </p>
+        <p>
+          The catch is that every bank implements the standard in its own way, and every payment
+          has to meet strict rules: PSD2 regulation, Strong Customer Authentication, and GDPR for
+          the customer data passing through. The goal was a single, reliable gateway that hides
+          all of that behind one consistent payment flow.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         02 · MY ROLE
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">02 / My role</div>
+      <div class="case-copy">
+        <h2>Architect, developer and the bank's technical contact</h2>
+        <ul class="case-list">
+          <li>Architected and built the MVP of the gateway, integrated with 18+ UK banks via their PISP APIs.</li>
+          <li>Wrote the first version in vanilla PHP, then migrated the whole codebase to Laravel.</li>
+          <li>Acted as the technical contact for each bank's team — validating integrations and resolving compatibility issues.</li>
+          <li>Implemented OAuth 2.0 and Strong Customer Authentication to meet PSD2 requirements.</li>
+          <li>Built the full payment lifecycle: request handling, real-time status monitoring, webhook processing and automated customer notifications.</li>
+          <li>Designed the customer-facing interface in Blade and JavaScript for payment authorisation, consent management and transaction history.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         03 · FROM VANILLA PHP TO LARAVEL
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">03 / The rebuild</div>
+      <div class="case-copy">
+        <h2>From vanilla PHP to Laravel</h2>
+        <p>
+          The gateway started life as a vanilla PHP application. Once that version was working,
+          I moved everything across to Laravel — the bank integrations, the payment lifecycle,
+          the OAuth 2.0 and SCA handling, and the customer-facing interface — so the MVP ended up
+          on a single, consistent framework.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         04 · HOW A PAYMENT FLOWS
+         Diagram built from an ordered list so it reads correctly
+         for screen readers and stacks nicely on phones.
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">04 / How a payment flows</div>
+      <h2 class="case-h2">From “Pay by bank” to money received</h2>
+
+      <!-- Colour key for the four parties involved -->
+      <ul class="flow-key mono" aria-label="Who is involved">
+        <li><span class="chip chip-customer"></span>Customer</li>
+        <li><span class="chip chip-business"></span>Business</li>
+        <li><span class="chip chip-gateway"></span>Gateway (my build)</li>
+        <li><span class="chip chip-bank"></span>Customer's bank</li>
+      </ul>
+
+      <ol class="flow">
+        <li class="flow-step">
+          <span class="flow-num">1</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>Customer → <span class="chip chip-business"></span>Business</p>
+            <h3>Chooses “Pay by bank”</h3>
+            <p>At checkout, the customer picks their bank instead of entering card details.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">2</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-business"></span>Business → <span class="chip chip-gateway"></span>Gateway</p>
+            <h3>Payment request created</h3>
+            <p>The gateway receives the request, validates it and records it before anything is sent to a bank.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">3</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-gateway"></span>Gateway → <span class="chip chip-bank"></span>Bank</p>
+            <h3>Payment initiated with the bank</h3>
+            <p>Using OAuth 2.0, the gateway sets up the payment through that bank's PISP API.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">4</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>Customer ↔ <span class="chip chip-bank"></span>Bank</p>
+            <h3>Customer approves with SCA</h3>
+            <p>The customer is sent to their own bank, logs in and approves the payment with Strong Customer Authentication.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">5</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-bank"></span>Bank → <span class="chip chip-gateway"></span>Gateway</p>
+            <h3>Back to the gateway</h3>
+            <p>The bank returns the customer, and the gateway picks up the result and carries the payment forward.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">6</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-gateway"></span>Gateway ↔ <span class="chip chip-bank"></span>Bank</p>
+            <h3>Status tracked in real time</h3>
+            <p>The gateway keeps watching the payment until it reaches a final state.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">7</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-gateway"></span>Gateway → <span class="chip chip-business"></span>Business + <span class="chip chip-customer"></span>Customer</p>
+            <h3>Everyone is told</h3>
+            <p>Webhooks update the business's system and automated notifications go out to the customer.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+
+    <!-- ============================================================
+         05 · INSIDE THE GATEWAY
+         Simple block diagram: business on the left, banks on the right,
+         the gateway's main parts in the middle.
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">05 / Inside the gateway</div>
+      <h2 class="case-h2">What the gateway is made of</h2>
+
+      <div class="arch" role="img" aria-label="Diagram: businesses and customers connect to the Laravel gateway, which connects to 18+ UK banks. Inside the gateway are payment request handling, bank integrations, OAuth 2.0 and SCA, status monitoring, webhooks and notifications, the customer interface, and security and audit logging.">
+        <div class="arch-side">
+          <span class="chip chip-business"></span>
+          <strong>Businesses</strong>
+          <small class="mono">& their customers</small>
+        </div>
+
+        <div class="arch-arrow" aria-hidden="true">⇄</div>
+
+        <div class="arch-core">
+          <p class="arch-title mono"><span class="chip chip-gateway"></span>Laravel gateway</p>
+          <ul>
+            <li>Payment requests</li>
+            <li>Bank integrations (PISP)</li>
+            <li>OAuth 2.0 + SCA</li>
+            <li>Real-time status</li>
+            <li>Webhooks + notifications</li>
+            <li>Customer interface</li>
+            <li class="arch-wide">Encryption · 2FA · audit &amp; error logging</li>
+          </ul>
+        </div>
+
+        <div class="arch-arrow" aria-hidden="true">⇄</div>
+
+        <div class="arch-side">
+          <span class="chip chip-bank"></span>
+          <strong>18+ UK banks</strong>
+          <small class="mono">via PISP APIs</small>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         06 · SECURITY & COMPLIANCE
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">06 / Security &amp; compliance</div>
+      <h2 class="case-h2">Built for regulated money movement</h2>
+
+      <div class="case-cards">
+        <article class="case-card">
+          <h3>PSD2</h3>
+          <p>Designed around the PSD2 rules for payment initiation from the start, not added at the end.</p>
+        </article>
+        <article class="case-card">
+          <h3>OAuth 2.0 + SCA</h3>
+          <p>Bank access through OAuth 2.0, with every payment approved by the customer using Strong Customer Authentication.</p>
+        </article>
+        <article class="case-card">
+          <h3>GDPR</h3>
+          <p>End-to-end data encryption and two-factor authentication to protect customer data.</p>
+        </article>
+        <article class="case-card">
+          <h3>Audit trail</h3>
+          <p>Detailed audit and error logging, so every payment and problem can be traced afterwards.</p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         07 · HOW WE WORKED
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">07 / How we worked</div>
+      <div class="case-copy">
+        <h2>Testing the integration with each bank</h2>
+        <p>
+          For each bank, I worked directly with its technical team to validate the integration
+          and resolve any compatibility issues. API changes were tested in Postman, and bugs
+          raised during QA were fixed as part of the sprint.
+        </p>
+        <p>
+          Day to day, I took part in daily stand-ups and sprint planning with the team,
+          working remotely for a London-based company.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         08 · OUTCOME
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">08 / Outcome</div>
+      <div class="case-copy">
+        <h2>A working MVP across 18+ banks</h2>
+        <ul class="case-list">
+          <li>Completed a working MVP of the gateway, integrated with 18+ UK banks.</li>
+          <li>PSD2 and Strong Customer Authentication requirements designed in from the ground up, not bolted on.</li>
+          <li>Started as a freelance engagement in November 2020 and was converted to a full-time role in December 2021.</li>
+        </ul>
+
+        <!-- Why the work stopped at MVP: regulatory approval, not the build -->
+        <p>
+          Before a payments product like this can launch in the UK, the company needs approval
+          from the Financial Conduct Authority (FCA). With the MVP complete, the next step was
+          waiting on that authorisation — a long process that was slowed further by COVID.
+        </p>
+
+        <p class="case-note mono">
+          Details are kept high-level to respect the confidentiality of the company and its partner banks.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CALL TO ACTION
+         ============================================================ -->
+    <section class="case-cta">
+      <h2>Need someone who's comfortable with <span class="accent">payments</span> and <span class="accent">APIs</span>?</h2>
+      <div class="hero-cta">
+        <a href="/#contact" class="btn btn-primary magnetic">Get in touch <span>→</span></a>
+        <a href="/assets/Amrit-Thapa-CV.pdf" class="btn btn-ghost magnetic" download>Download CV <span>↓</span></a>
+        <a href="/#work" class="btn btn-ghost magnetic">← All work</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer mono">
+    <span>© <span id="year"></span> Amrit Thapa</span>
+    <span>Made in Brisbane ✺</span>
+    <a href="#main">Back to top ↑</a>
+  </footer>
+
+  <script src="/script.js?v=202611091600" defer></script>
+</body>
+</html>

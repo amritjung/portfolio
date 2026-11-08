@@ -24,7 +24,8 @@
  *  18. Responsive
  *  19. Reduced motion
  *  20. 404 page
- *  21. Print
+ *  21. Case-study pages
+ *  22. Print
  */
 
 
@@ -921,6 +922,63 @@ body::before {
   animation: fade .3s;
 }
 
+/* --- Open Banking: "pay by bank" card with a grid of banks ---- */
+.v-bank {
+  background: radial-gradient(circle at 70% 20%, #1e3a8a, #0b1530 75%);
+}
+
+.bank-card {
+  display: grid;
+  gap: 10px;
+  width: min(280px, 85%);
+  padding: 24px;
+  border-radius: 18px;
+  background: #fff;
+  color: #0b1530;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
+  transition: transform .5s;
+}
+
+.project:hover .bank-card {
+  transform: translateY(-6px) rotate(-1.5deg);
+}
+
+/* ".bank-card" prefix beats ".project p", so these keep fixed colours in dark mode */
+.bank-card > p:first-child {
+  color: #475569;
+}
+
+.bank-card strong {
+  font-family: var(--display);
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+/* 18 little tiles = 18+ banks */
+.bank-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.bank-grid span {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background: #e2e8f0;
+}
+
+.bank-grid span:nth-child(8) {
+  background: var(--accent);
+}
+
+.bank-card .bank-ok {
+  justify-self: start;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #166534;
+}
+
 /* --- Lendly: loan calculator card ----------------------------- */
 .v-loan {
   background: linear-gradient(135deg, #0f766e, #134e4a);
@@ -1686,7 +1744,410 @@ main:focus {
 
 
 /* ===============================================================
-   21. Print
+   21. Case-study pages (/work/...)
+   Long-form layout: a big intro, then numbered sections with the
+   label on the left and the content on the right.
+   =============================================================== */
+
+/* Simple two-link nav used instead of the full menu */
+.case-nav {
+  display: flex;
+  gap: 24px;
+  font-weight: 500;
+}
+
+.case-nav a:hover {
+  color: var(--accent-text);
+}
+
+/* --- Intro ----------------------------------------------------- */
+.case-hero {
+  padding: 150px var(--pad) 40px;
+}
+
+.case-title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 9vw, 7.5rem);
+  line-height: .92;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+}
+
+.case-title .outline {
+  -webkit-text-stroke-width: 2px;
+}
+
+.case-lead {
+  max-width: 760px;
+  margin-top: 32px;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.case-lead strong {
+  color: var(--ink);
+}
+
+/* Role / Company / Timeline / Stack */
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1.5px solid var(--line);
+}
+
+.case-meta dt {
+  margin-bottom: 6px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.case-meta dd {
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+/* --- Shared section layout ------------------------------------ */
+.case-section {
+  padding: 48px var(--pad);
+}
+
+/* Label on the left, content on the right */
+.case-split {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  align-items: start; /* keep the label at the top, next to the heading */
+  gap: 24px;
+}
+
+.case-split .section-label {
+  margin: 6px 0 0;
+}
+
+.case-copy {
+  max-width: 760px;
+}
+
+.case-copy h2,
+.case-h2 {
+  margin-bottom: 18px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  line-height: 1.1;
+}
+
+.case-h2 {
+  margin-bottom: 28px;
+}
+
+.case-copy p + p,
+.case-list + p {
+  margin-top: 14px;
+}
+
+.case-copy p {
+  color: var(--muted);
+}
+
+.case-list {
+  display: grid;
+  gap: 10px;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.case-list li::marker {
+  color: var(--accent);
+}
+
+.case-note {
+  margin-top: 24px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-2);
+  font-size: .75rem;
+}
+
+/* --- Big numbers row ------------------------------------------- */
+.case-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.case-stats li {
+  display: grid;
+  gap: 6px;
+  padding: 28px;
+}
+
+.case-stats li + li {
+  border-left: 1.5px solid var(--line);
+}
+
+.case-stats strong {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  color: var(--accent-text);
+}
+
+.case-stats span {
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+/* --- Colour chips for the four parties ------------------------- */
+.chip {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 3px;
+  vertical-align: baseline;
+}
+
+.chip-customer { background: #2b50ff; }
+.chip-business { background: #0f766e; }
+.chip-gateway  { background: var(--accent); }
+.chip-bank     { background: #7c3aed; }
+
+.flow-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-bottom: 24px;
+  list-style: none;
+  color: var(--muted);
+}
+
+/* --- Payment flow diagram -------------------------------------- */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 7 steps → rows of 4 + 3 */
+  gap: 16px;
+  list-style: none;
+}
+
+.flow-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  padding: 22px;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.flow-num {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: .85rem;
+  font-weight: 500;
+}
+
+.flow-actors {
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+.flow-actors .chip {
+  margin: 0 4px 0 0;
+}
+
+.flow-step h3 {
+  margin-bottom: 6px;
+  font-family: var(--display);
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.flow-step p:last-child {
+  font-size: .92rem;
+  color: var(--muted);
+}
+
+/* --- Architecture block diagram ------------------------------- */
+.arch {
+  display: grid;
+  grid-template-columns: 1fr auto 2.2fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+
+.arch-side {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 28px 16px;
+  border: 1.5px dashed var(--line);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.arch-side .chip {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.arch-side small {
+  color: var(--muted);
+}
+
+.arch-arrow {
+  font-size: 1.8rem;
+  color: var(--muted);
+}
+
+.arch-core {
+  padding: 22px;
+  border: 2px solid var(--accent);
+  border-radius: 18px;
+  background: var(--card);
+}
+
+.arch-title {
+  margin-bottom: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.arch-core ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  list-style: none;
+}
+
+.arch-core li {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--bg-2);
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+.arch-core .arch-wide {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+/* --- Security cards -------------------------------------------- */
+.case-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.case-card {
+  padding: 24px;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.case-card h3 {
+  margin-bottom: 8px;
+  font-family: var(--display);
+  font-size: 1.25rem;
+}
+
+.case-card p {
+  font-size: .92rem;
+  color: var(--muted);
+}
+
+/* --- Closing call to action ------------------------------------ */
+.case-cta {
+  margin-top: 40px;
+  padding: clamp(60px, 8vw, 110px) var(--pad);
+  border-top: 1.5px solid var(--line);
+}
+
+.case-cta h2 {
+  max-width: 900px;
+  margin-bottom: 32px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4.5vw, 3.6rem);
+  line-height: 1.05;
+}
+
+/* --- Case pages on smaller screens ----------------------------- */
+@media (max-width: 1000px) {
+  .case-meta,
+  .case-stats,
+  .case-cards,
+  .flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-stats li:nth-child(3) {
+    border-left: 0;
+  }
+
+  .case-stats li:nth-child(n + 3) {
+    border-top: 1.5px solid var(--line);
+  }
+
+  /* Architecture diagram stacks vertically, arrows point down */
+  .arch {
+    grid-template-columns: 1fr;
+  }
+
+  .arch-arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 720px) {
+  .case-split {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .case-hero {
+    padding-top: 120px;
+  }
+}
+
+@media (max-width: 520px) {
+  .case-nav {
+    gap: 14px;
+    font-size: .9rem;
+  }
+
+  .case-meta,
+  .case-cards,
+  .flow,
+  .arch-core ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===============================================================
+   22. Print
    Turns the page into a clean, CV-like document: black on white,
    no animations or decoration, links spelled out, nothing cut in
    half across pages.
@@ -1957,6 +2418,30 @@ main:focus {
   h3,
   .section-label {
     break-after: avoid;
+  }
+
+  /* Case-study pages */
+  .case-nav,
+  .case-cta {
+    display: none !important;
+  }
+
+  .case-hero {
+    padding: 0 0 12pt;
+  }
+
+  .case-title {
+    font-size: 22pt;
+  }
+
+  .case-section {
+    padding: 8pt 0;
+  }
+
+  .flow-step,
+  .case-card,
+  .arch {
+    break-inside: avoid;
   }
 
   /* Spell out web addresses after external links */

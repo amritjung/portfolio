@@ -36,7 +36,7 @@
         "name": "Amrit Thapa",
         "url": "https://amritthapa.com/",
         "jobTitle": "Laravel Developer",
-        "description": "Laravel and PHP developer with 3+ years of commercial experience, including an Open Banking payment gateway integrated with 18+ UK banks.",
+        "description": "Laravel and PHP developer with 3+ years of commercial experience, including building an Open Banking payment gateway MVP integrated with 18+ UK banks.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Brisbane",
@@ -101,7 +101,7 @@
   <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Bump ?v= whenever styles.css changes so browsers don't use an old cached copy -->
-  <link rel="stylesheet" href="styles.css?v=202611091510" />
+  <link rel="stylesheet" href="styles.css?v=202611091600" />
 </head>
 
 <body>
@@ -173,7 +173,7 @@
       <div class="hero-foot">
         <p class="hero-intro">
           I'm <strong>Amrit Thapa</strong> — a Laravel developer with 3+ years of commercial
-          experience. I've built an Open Banking payment gateway connected to 18+ UK banks and
+          experience. I've built an Open Banking payment gateway MVP integrated with 18+ UK banks and
           delivered web systems for government and business clients in Nepal.
         </p>
 
@@ -246,12 +246,12 @@
           <p>
             I'm a Laravel and PHP developer who enjoys the integration side of the job — APIs,
             payments, authentication and the people on the other end of them. In London I was the
-            technical contact for 18+ banks while we took an Open Banking gateway from testing to
-            production.
+            technical contact for 18+ banks while we built the MVP of an Open Banking payment
+            gateway.
           </p>
           <p>
             I'm comfortable gathering requirements, explaining technical choices to non-technical
-            people, writing documentation, and tracing production issues across the app, database
+            people, writing documentation, and tracing issues across the app, database
             and Linux servers. I finished my Master of IT at James Cook University in Brisbane in
             2025 and have full Australian work rights.
           </p>
@@ -298,7 +298,41 @@
 
       <div class="projects">
 
-        <!-- Project 01: randoJeans -->
+        <!-- Project 01: Open Banking gateway (has a full case study) -->
+        <article class="project reveal" data-cat="laravel">
+          <div class="project-visual v-bank" aria-hidden="true">
+            <div class="bank-card">
+              <p class="mono">Pay by bank</p>
+              <strong>£42.50</strong>
+              <div class="bank-grid">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <p class="bank-ok mono">✓ Authorised · SCA</p>
+            </div>
+          </div>
+
+          <div class="project-body">
+            <div class="project-meta mono"><span>01</span><span>Fintech · 2020–2022</span></div>
+            <h3>Open Banking Gateway</h3>
+            <p>
+              An MVP of a Laravel payment gateway that lets customers pay straight from their bank
+              account. Integrated with 18+ UK banks via PISP APIs, with OAuth 2.0 and Strong Customer
+              Authentication designed in for PSD2. Built at Wonderful Payments, London.
+            </p>
+            <ul class="tags mono">
+              <li>Laravel</li>
+              <li>PHP</li>
+              <li>OAuth 2.0 / SCA</li>
+              <li>Webhooks</li>
+              <li>PSD2</li>
+            </ul>
+            <a href="/work/open-banking-gateway/" class="project-link">Read the case study <span>→</span></a>
+          </div>
+        </article>
+
+        <!-- Project 02: randoJeans -->
         <article class="project reveal" data-cat="laravel">
           <div class="project-visual v-denim">
             <div class="denim-tag"><span>rando</span>JEANS</div>
@@ -306,7 +340,7 @@
           </div>
 
           <div class="project-body">
-            <div class="project-meta mono"><span>01</span><span>E-commerce · 2026</span></div>
+            <div class="project-meta mono"><span>02</span><span>E-commerce · 2026</span></div>
             <h3>randoJeans</h3>
             <p>
               A denim e-commerce store with a Filament admin panel, live Livewire filtering with URL
@@ -320,11 +354,10 @@
               <li>Filament v5</li>
               <li>Tailwind v4</li>
             </ul>
-            <a href="#" class="project-link">View case study <span>→</span></a>
           </div>
         </article>
 
-        <!-- Project 02: Opal Rush (the reels actually spin — see script.js) -->
+        <!-- Project 03: Opal Rush (the reels actually spin — see script.js) -->
         <article class="project reveal" data-cat="frontend">
           <div class="project-visual v-slots">
             <div class="reels" id="reels" aria-hidden="true">
@@ -338,7 +371,7 @@
           </div>
 
           <div class="project-body">
-            <div class="project-meta mono"><span>02</span><span>Browser game · 2026</span></div>
+            <div class="project-meta mono"><span>03</span><span>Browser game · 2026</span></div>
             <h3>Opal Rush</h3>
             <p>
               A free-play, Australian-style pokie game for the browser — reels, paylines, scatters
@@ -351,11 +384,10 @@
               <li>Canvas/CSS animation</li>
               <li>Game logic</li>
             </ul>
-            <a href="#" class="project-link">Play the demo <span>→</span></a>
           </div>
         </article>
 
-        <!-- Project 03: Lendly (working loan slider) -->
+        <!-- Project 04: Lendly (working loan slider) -->
         <article class="project reveal" data-cat="wordpress">
           <div class="project-visual v-loan">
             <div class="loan-card">
@@ -370,7 +402,7 @@
           </div>
 
           <div class="project-body">
-            <div class="project-meta mono"><span>03</span><span>WordPress · 2026</span></div>
+            <div class="project-meta mono"><span>04</span><span>WordPress · 2026</span></div>
             <h3>Lendly</h3>
             <p>
               A personal-loans marketing site built the "company way" — DDEV (Docker), Bedrock and
@@ -384,11 +416,10 @@
               <li>Custom theme</li>
               <li>Custom plugin</li>
             </ul>
-            <a href="#" class="project-link">View project <span>→</span></a>
           </div>
         </article>
 
-        <!-- Project 04: Australian Migration Platform -->
+        <!-- Project 05: Australian Migration Platform -->
         <article class="project reveal" data-cat="laravel">
           <div class="project-visual v-migrate">
             <div class="path">
@@ -400,7 +431,7 @@
           </div>
 
           <div class="project-body">
-            <div class="project-meta mono"><span>04</span><span>Platform · In progress</span></div>
+            <div class="project-meta mono"><span>05</span><span>Platform · In progress</span></div>
             <h3>Australian Migration Platform</h3>
             <p>
               A platform to guide people through Australian visa pathways — eligibility checks,
@@ -413,11 +444,10 @@
               <li>REST API</li>
               <li>System design</li>
             </ul>
-            <a href="#" class="project-link">View project <span>→</span></a>
           </div>
         </article>
 
-        <!-- Project 05: Hotel Tharu Garden menus -->
+        <!-- Project 06: Hotel Tharu Garden menus -->
         <article class="project reveal" data-cat="design">
           <div class="project-visual v-menu">
             <div class="menu-card">
@@ -432,7 +462,7 @@
           </div>
 
           <div class="project-body">
-            <div class="project-meta mono"><span>05</span><span>Print &amp; brand · 2026</span></div>
+            <div class="project-meta mono"><span>06</span><span>Print &amp; brand · 2026</span></div>
             <h3>Hotel Tharu Garden Menus</h3>
             <p>
               A full menu redesign for a hotel restaurant in Sauraha, Chitwan — a consistent visual
@@ -443,7 +473,6 @@
               <li>Typography</li>
               <li>Brand system</li>
             </ul>
-            <a href="#" class="project-link">See the menus <span>→</span></a>
           </div>
         </article>
 
@@ -544,8 +573,8 @@
           <div class="t-what">
             <h3>Open Banking Integration Engineer — <span class="accent">Wonderful Payments</span></h3>
             <ul>
-              <li>Architected and delivered a Laravel Open Banking payment gateway integrated with 18+ UK banks via PISP APIs.</li>
-              <li>Technical contact for each bank's team — validated integrations and resolved issues before production release.</li>
+              <li>Architected and built the MVP of an Open Banking payment gateway — first in vanilla PHP, then migrated to Laravel — integrated with 18+ UK banks via PISP APIs.</li>
+              <li>Technical contact for each bank's team — validated integrations and resolved compatibility issues.</li>
               <li>Implemented OAuth 2.0 and Strong Customer Authentication (SCA) to meet PSD2 requirements.</li>
               <li>Handled the full payment lifecycle: status monitoring, webhooks and automated customer notifications.</li>
               <li>Built the customer-facing Blade/JavaScript UI for payment authorisation, consent and transaction history.</li>
@@ -684,6 +713,6 @@
 
 
   <!-- Scripts (hCaptcha is loaded later by script.js, only when the contact form is near) -->
-  <script src="script.js?v=202611091510" defer></script>
+  <script src="script.js?v=202611091600" defer></script>
 </body>
 </html>
