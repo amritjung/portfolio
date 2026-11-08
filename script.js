@@ -1,3 +1,10 @@
+// ===== Clickjacking defence: refuse to run inside someone else's frame =====
+if (window.top !== window.self) {
+  document.documentElement.style.display = "none";
+  try { window.top.location.replace(window.self.location.href); } catch {}
+  throw new Error("Framed — blocked");
+}
+
 // ===== CONFIG =====
 // Contact form is delivered by Web3Forms (https://web3forms.com).
 // The access key is safe to keep in front-end code — it only allows sending to your inbox.

@@ -1,0 +1,4 @@
+Contact: https://amritthapa.com/#contact
+Expires: 2027-11-30T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://amritthapa.com/.well-known/security.txt

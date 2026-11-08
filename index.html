@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amrit Thapa — PHP &amp; Laravel Developer</title>
   <meta name="description" content="Amrit Thapa — Brisbane-based PHP & Laravel developer building full-stack web products." />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://js.hcaptcha.com https://hcaptcha.com https://*.hcaptcha.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://hcaptcha.com https://*.hcaptcha.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com https://hcaptcha.com https://*.hcaptcha.com; frame-src https://hcaptcha.com https://*.hcaptcha.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://js.hcaptcha.com https://hcaptcha.com https://*.hcaptcha.com; style-src 'self' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com; font-src 'self'; img-src 'self' data: https://*.hcaptcha.com; connect-src 'self' https://api.web3forms.com https://hcaptcha.com https://*.hcaptcha.com; frame-src https://hcaptcha.com https://*.hcaptcha.com; child-src https://hcaptcha.com https://*.hcaptcha.com; worker-src 'self' blob:; manifest-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=202611081324" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="preload" href="assets/fonts/syne-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css?v=202611081341" />
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -264,11 +264,11 @@
           <a href="#contact" class="contact-big" data-email><span class="email-text">Email me</span> <span>↗</span></a>
           <div class="socials mono">
             <a href="https://www.linkedin.com/in/amrit-thapa555" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://github.com/amritjung" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
             <a href="assets/Amrit-Thapa-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV ↗</a>
           </div>
         </div>
-        <form class="contact-form reveal" id="contactForm" novalidate>
+        <form class="contact-form reveal" id="contactForm" method="post" action="#contact" novalidate>
           <label><span class="mono">Name <b class="req" aria-hidden="true">✱</b></span><input type="text" name="name" required aria-required="true" minlength="2" maxlength="100" autocomplete="name" placeholder="Your name" /></label>
           <label><span class="mono">Email <b class="req" aria-hidden="true">✱</b></span><input type="email" name="email" required aria-required="true" maxlength="150" autocomplete="email" placeholder="you@company.com" /></label>
           <label><span class="mono">Message <b class="req" aria-hidden="true">✱</b></span><textarea name="message" rows="5" required aria-required="true" minlength="10" maxlength="5000" placeholder="Tell me about the role or project…"></textarea></label>
@@ -288,6 +288,6 @@
   </footer>
 
   <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-  <script src="script.js?v=202611081324"></script>
+  <script src="script.js?v=202611081341"></script>
 </body>
 </html>
