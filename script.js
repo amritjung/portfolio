@@ -220,6 +220,14 @@ const revealObserver = new IntersectionObserver(
 
 $$(".reveal").forEach((el) => revealObserver.observe(el));
 
+// When printing, show the final numbers even if the visitor never
+// scrolled down far enough to trigger the count-up.
+window.addEventListener("beforeprint", () => {
+  $$(".counter").forEach((el) => {
+    el.textContent = el.dataset.target + (el.dataset.suffix || "");
+  });
+});
+
 function countUp(el) {
   const target = Number(el.dataset.target);
   const suffix = el.dataset.suffix || "";
