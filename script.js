@@ -19,6 +19,7 @@
  *  11. Lendly loan calculator
  *  12. Contact email link
  *  13. Contact form
+ *  13b. Load hCaptcha only when needed
  *  14. Footer year
  */
 
@@ -634,6 +635,38 @@ form.addEventListener("submit", async (event) => {
     submitButton.innerHTML = originalButtonHTML;
   }
 });
+
+
+/* ---------------------------------------------------------------
+ * 13b. Load hCaptcha only when needed
+ * The captcha script is ~100 KB+ from a third party. Rather than
+ * loading it for every visitor, wait until the contact section is
+ * about to scroll into view (or someone starts typing in the form).
+ * ------------------------------------------------------------- */
+let captchaRequested = false;
+
+function loadCaptcha() {
+  if (captchaRequested) return;
+  captchaRequested = true;
+
+  const captchaScript = document.createElement("script");
+  captchaScript.src = "https://js.hcaptcha.com/1/api.js";
+  captchaScript.async = true;
+  document.head.appendChild(captchaScript);
+}
+
+const captchaObserver = new IntersectionObserver(
+  (entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) {
+      loadCaptcha();
+      captchaObserver.disconnect();
+    }
+  },
+  { rootMargin: "600px 0px" } // start loading a little before it's visible
+);
+
+captchaObserver.observe($("#contact"));
+form.addEventListener("focusin", loadCaptcha, { once: true });
 
 
 /* ---------------------------------------------------------------
