@@ -1123,7 +1123,7 @@ body::before {
   border-top: 1.5px solid var(--line);
 }
 
-.timeline li {
+.timeline > li {
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 24px;
@@ -1132,7 +1132,7 @@ body::before {
   transition: padding .3s, background .3s;
 }
 
-.timeline li:hover {
+.timeline > li:hover {
   padding-left: 18px;
   background: var(--bg-2);
 }
@@ -1153,6 +1153,33 @@ body::before {
 .t-what p {
   max-width: 680px;
   color: var(--muted);
+}
+
+/* Bullet points under each role */
+.t-what ul {
+  display: grid;
+  gap: 6px;
+  max-width: 760px;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.t-what li {
+  padding-left: 4px;
+}
+
+.t-what li::marker {
+  color: var(--accent);
+}
+
+/* Small grey footnote, e.g. "Freelance from…" */
+.t-what .t-note {
+  margin-top: 10px;
+  font-size: .72rem;
+}
+
+.t-when {
+  line-height: 1.7;
 }
 
 
@@ -1428,7 +1455,7 @@ body::before {
     border-bottom: 1.5px solid var(--line);
   }
 
-  .timeline li {
+  .timeline > li {
     grid-template-columns: 1fr;
     gap: 6px;
   }
