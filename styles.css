@@ -261,6 +261,8 @@ body::before {
 .form-status[data-type="success"] { color: #4ade80; }
 .form-status[data-type="error"] { color: var(--accent); }
 .h-captcha { min-height: 78px; }
+.req { color: var(--accent); font-weight: 400; }
+.contact-form [aria-invalid="true"] { border-bottom-color: var(--accent); box-shadow: 0 2px 0 0 var(--accent); }
 .contact-form button:disabled { opacity: .6; cursor: wait; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 

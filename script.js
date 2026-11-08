@@ -173,24 +173,31 @@ const clean = (v, multiline = false) => {
 };
 
 function validate({ name, email, message }) {
-  if (name.length < 2 || name.length > 100) return "Please enter your name (2–100 characters).";
-  if (URL_RE.test(name) || /[<>{}]/.test(name)) return "Your name can't contain links or special symbols.";
+  if (!name) return ["name", "Name is required."];
+  if (name.length < 2 || name.length > 100) return ["name", "Please enter your name (2–100 characters)."];
+  if (URL_RE.test(name) || /[<>{}]/.test(name)) { URL_RE.lastIndex = 0; return ["name", "Your name can't contain links or special symbols."]; }
   URL_RE.lastIndex = 0;
-  if (!EMAIL_RE.test(email) || email.length > 150) return "Please enter a valid email address.";
-  if (message.length < 10) return "Your message is a bit short — tell me a little more.";
-  if (message.length > 5000) return "Please keep your message under 5,000 characters.";
+  if (!email) return ["email", "Email is required."];
+  if (!EMAIL_RE.test(email) || email.length > 150) return ["email", "Please enter a valid email address."];
+  if (!message) return ["message", "Message is required."];
+  if (message.length < 10) return ["message", "Your message is a bit short — tell me a little more."];
+  if (message.length > 5000) return ["message", "Please keep your message under 5,000 characters."];
   const links = message.match(URL_RE) || [];
   URL_RE.lastIndex = 0;
-  if (links.length > 2) return "Please include no more than 2 links.";
+  if (links.length > 2) return ["message", "Please include no more than 2 links."];
   return null;
 }
+
+// Clear the error highlight as soon as the visitor edits a field
+$$("input, textarea", form).forEach(el => el.addEventListener("input", () => el.removeAttribute("aria-invalid")));
 
 form.addEventListener("submit", async e => {
   e.preventDefault();
   const raw = Object.fromEntries(new FormData(form));
 
   // Bot traps: hidden honeypot field or impossibly fast submission → pretend success, send nothing
-  if (raw.botcheck || Date.now() - LOADED_AT < MIN_FILL_MS) {
+  const allFilled = ["name", "email", "message"].every(k => clean(raw[k]));
+  if (raw.botcheck || (allFilled && Date.now() - LOADED_AT < MIN_FILL_MS)) {
     form.reset();
     setStatus("Thanks! Your message is on its way.", "success");
     return;
@@ -209,8 +216,16 @@ form.addEventListener("submit", async e => {
   }
 
   const data = { name: clean(raw.name), email: clean(raw.email).toLowerCase(), message: clean(raw.message, true) };
+  $$("[aria-invalid]", form).forEach(el => el.removeAttribute("aria-invalid"));
   const problem = validate(data);
-  if (problem) { setStatus(problem, "error"); return; }
+  if (problem) {
+    const [field, msg] = problem;
+    const el = form.elements[field];
+    el.setAttribute("aria-invalid", "true");
+    el.focus();
+    setStatus(msg, "error");
+    return;
+  }
 
   const captcha = raw["h-captcha-response"];
   if (!captcha) { setStatus("Please complete the “I am human” check.", "error"); return; }

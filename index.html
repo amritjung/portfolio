@@ -269,9 +269,9 @@
           </div>
         </div>
         <form class="contact-form reveal" id="contactForm" novalidate>
-          <label><span class="mono">Name</span><input type="text" name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your name" /></label>
-          <label><span class="mono">Email</span><input type="email" name="email" required maxlength="150" autocomplete="email" placeholder="you@company.com" /></label>
-          <label><span class="mono">Message</span><textarea name="message" rows="5" required minlength="10" maxlength="5000" placeholder="Tell me about the role or project…"></textarea></label>
+          <label><span class="mono">Name <b class="req" aria-hidden="true">✱</b></span><input type="text" name="name" required aria-required="true" minlength="2" maxlength="100" autocomplete="name" placeholder="Your name" /></label>
+          <label><span class="mono">Email <b class="req" aria-hidden="true">✱</b></span><input type="email" name="email" required aria-required="true" maxlength="150" autocomplete="email" placeholder="you@company.com" /></label>
+          <label><span class="mono">Message <b class="req" aria-hidden="true">✱</b></span><textarea name="message" rows="5" required aria-required="true" minlength="10" maxlength="5000" placeholder="Tell me about the role or project…"></textarea></label>
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div class="h-captcha" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2" data-theme="dark" data-captcha="true"></div>
           <button type="submit" class="btn btn-primary magnetic">Send message <span>→</span></button>
