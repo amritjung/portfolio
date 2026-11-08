@@ -267,9 +267,10 @@
           </div>
         </div>
         <form class="contact-form reveal" id="contactForm">
-          <label><span class="mono">Name</span><input type="text" name="name" required placeholder="Your name" /></label>
-          <label><span class="mono">Email</span><input type="email" name="email" required placeholder="you@company.com" /></label>
-          <label><span class="mono">Message</span><textarea name="message" rows="5" required placeholder="Tell me about the role or project…"></textarea></label>
+          <label><span class="mono">Name</span><input type="text" name="name" required maxlength="100" autocomplete="name" placeholder="Your name" /></label>
+          <label><span class="mono">Email</span><input type="email" name="email" required maxlength="150" autocomplete="email" placeholder="you@company.com" /></label>
+          <label><span class="mono">Message</span><textarea name="message" rows="5" required maxlength="5000" placeholder="Tell me about the role or project…"></textarea></label>
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <button type="submit" class="btn btn-primary magnetic">Send message <span>→</span></button>
           <p class="form-status mono" id="formStatus" role="status"></p>
         </form>

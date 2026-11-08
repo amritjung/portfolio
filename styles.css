@@ -257,7 +257,11 @@ body::before {
 .contact-form ::placeholder { color: color-mix(in srgb, var(--bg) 35%, transparent); }
 .contact-form .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; justify-self: start; margin-top: 8px; }
 .contact-form .btn-primary:hover { background: var(--bg); color: var(--ink); border-color: var(--bg); }
-.form-status { min-height: 1.2em; color: var(--accent); }
+.form-status { min-height: 1.2em; color: color-mix(in srgb, var(--bg) 70%, transparent); }
+.form-status[data-type="success"] { color: #4ade80; }
+.form-status[data-type="error"] { color: var(--accent); }
+.contact-form button:disabled { opacity: .6; cursor: wait; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 .footer { background: var(--ink); color: color-mix(in srgb, var(--bg) 60%, transparent); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; padding: 28px var(--pad); border-top: 1px solid color-mix(in srgb, var(--bg) 15%, transparent); }
 .footer a:hover { color: var(--accent); }

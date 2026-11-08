@@ -1,7 +1,7 @@
 // ===== CONFIG =====
-// Paste a Formspree (or similar) endpoint here to receive messages directly,
-// e.g. "https://formspree.io/f/abcdwxyz". Leave empty to fall back to the visitor's email app.
-const FORM_ENDPOINT = "";
+// Contact form is delivered by Web3Forms (https://web3forms.com).
+// The access key is safe to keep in front-end code — it only allows sending to your inbox.
+const WEB3FORMS_KEY = "4dd9c5d2-81f8-47c4-9f30-46dd6e2654bd";
 const CONTACT_EMAIL = "amritthapa555@gmail.com";
 
 const $ = (s, el = document) => el.querySelector(s);
@@ -143,29 +143,48 @@ range.addEventListener("input", updateLoan);
 updateLoan();
 
 // ===== Contact form =====
-const form = $("#contactForm"), status = $("#formStatus");
+const form = $("#contactForm"), status = $("#formStatus"), submitBtn = $("button[type=submit]", form);
+const setStatus = (msg, type = "") => { status.textContent = msg; status.dataset.type = type; };
+
 form.addEventListener("submit", async e => {
   e.preventDefault();
   const data = Object.fromEntries(new FormData(form));
-  if (FORM_ENDPOINT) {
-    status.textContent = "Sending…";
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error();
-      form.reset();
-      status.textContent = "Thanks! I'll get back to you soon.";
-    } catch {
-      status.textContent = `Something went wrong — please email ${CONTACT_EMAIL} directly.`;
-    }
-  } else {
-    const subject = encodeURIComponent(`Portfolio enquiry from ${data.name}`);
-    const body = encodeURIComponent(`${data.message}\n\n— ${data.name} (${data.email})`);
-    location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    status.textContent = "Opening your email app…";
+  if (data.botcheck) return; // honeypot: bots fill hidden fields
+
+  if (!WEB3FORMS_KEY || WEB3FORMS_KEY.includes("YOUR_")) {
+    setStatus(`Form not configured yet — please email ${CONTACT_EMAIL}.`, "error");
+    return;
+  }
+
+  submitBtn.disabled = true;
+  const label = submitBtn.innerHTML;
+  submitBtn.innerHTML = "Sending…";
+  setStatus("");
+
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: `Portfolio enquiry from ${data.name}`,
+        from_name: "amritthapa.com",
+        replyto: data.email,
+        name: data.name,
+        email: data.email,
+        message: data.message,
+      }),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || !json.success) throw new Error(json.message || "Request failed");
+    form.reset();
+    setStatus("Thanks! Your message is on its way — I'll reply soon.", "success");
+  } catch (err) {
+    console.error(err);
+    setStatus(`Sorry, that didn't send. Please try again or email ${CONTACT_EMAIL}.`, "error");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = label;
   }
 });
 
