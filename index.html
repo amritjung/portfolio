@@ -20,32 +20,54 @@
   <meta name="theme-color" content="#141210" />
 
   <!--
-    Structured data for Google — tells search engines who this page is about,
+    Structured data for Google — a ProfilePage about me (the Person inside it),
     what I do and where my other profiles live. It's data only, never executed.
   -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Amrit Thapa",
+      "@type": "ProfilePage",
       "url": "https://amritthapa.com/",
-      "jobTitle": "Laravel Developer",
-      "description": "Laravel and PHP developer with 3+ years of commercial experience, including an Open Banking payment gateway integrated with 18+ UK banks.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Brisbane",
-        "addressRegion": "QLD",
-        "addressCountry": "AU"
-      },
-      "alumniOf": [
-        { "@type": "CollegeOrUniversity", "name": "James Cook University" },
-        { "@type": "CollegeOrUniversity", "name": "Kathford International School of Engineering & Management" }
-      ],
-      "knowsAbout": ["Laravel", "PHP", "MySQL", "REST APIs", "Open Banking", "OAuth 2.0", "AWS", "Docker", "WordPress"],
-      "sameAs": [
-        "https://www.linkedin.com/in/amrit-thapa555",
-        "https://github.com/amritjung"
-      ]
+      "name": "Amrit Thapa — Laravel Developer",
+      "dateModified": "2026-11-09",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Amrit Thapa",
+        "url": "https://amritthapa.com/",
+        "jobTitle": "Laravel Developer",
+        "description": "Laravel and PHP developer with 3+ years of commercial experience, including an Open Banking payment gateway integrated with 18+ UK banks.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Brisbane",
+          "addressRegion": "QLD",
+          "addressCountry": "AU"
+        },
+        "alumniOf": [
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "James Cook University"
+          },
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "Kathford International School of Engineering & Management"
+          }
+        ],
+        "knowsAbout": [
+          "Laravel",
+          "PHP",
+          "MySQL",
+          "REST APIs",
+          "Open Banking",
+          "OAuth 2.0",
+          "AWS",
+          "Docker",
+          "WordPress"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/amrit-thapa555",
+          "https://github.com/amritjung"
+        ]
+      }
     }
   </script>
 
