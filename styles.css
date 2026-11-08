@@ -23,6 +23,7 @@
  *  17. Scroll reveal animation
  *  18. Responsive
  *  19. Reduced motion
+ *  20. 404 page
  */
 
 
@@ -1604,4 +1605,61 @@ main:focus {
     opacity: 1;
     transform: none;
   }
+}
+
+
+/* ===============================================================
+   20. 404 page (404.html)
+   Reuses the nav, buttons and footer from above.
+   =============================================================== */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.error-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 130px var(--pad) 80px;
+}
+
+.error-main:focus {
+  outline: none;
+}
+
+/* Giant "404" — outlined 4s with a solid orange 0 */
+.error-code {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(7rem, 30vw, 20rem);
+  line-height: .85;
+  letter-spacing: -.04em;
+}
+
+.error-code .outline {
+  -webkit-text-stroke-width: 2px;
+}
+
+.error-title {
+  margin-top: 32px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  line-height: 1.1;
+}
+
+.error-text {
+  max-width: 520px;
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+.error-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Page not found — Amrit Thapa</title>
+  <meta name="description" content="This page doesn't exist on amritthapa.com." />
+
+  <!-- Keep error pages out of Google -->
+  <meta name="robots" content="noindex" />
+
+  <!--
+    GitHub Pages shows this file for ANY missing URL (e.g. /old/page),
+    so every link and file path here starts with "/" to work from any depth.
+    No JavaScript on this page, so scripts are switched off completely.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    style-src 'self';
+    font-src 'self';
+    img-src 'self' data:;
+    base-uri 'none';
+    form-action 'none';
+    object-src 'none'
+  " />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <meta name="theme-color" content="#141210" />
+
+  <link rel="stylesheet" href="/styles.css?v=202611091300" />
+</head>
+
+<body class="error-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============================================================
+       NAVIGATION (simplified — just the logo home)
+       ============================================================ -->
+  <header class="nav">
+    <a href="/" class="logo">amrit<span>.</span></a>
+  </header>
+
+
+  <!-- ============================================================
+       404 MESSAGE
+       ============================================================ -->
+  <main id="main" class="error-main" tabindex="-1">
+    <p class="eyebrow mono">Error 404 · Page not found</p>
+
+    <h1 class="error-code" aria-label="404">
+      <span class="outline">4</span><span class="accent">0</span><span class="outline">4</span>
+    </h1>
+
+    <h2 class="error-title">This page took a wrong turn.</h2>
+    <p class="error-text">
+      The link might be old, or there may be a typo in the address.
+      Everything worth seeing is still on the home page.
+    </p>
+
+    <nav class="error-links" aria-label="Helpful links">
+      <a href="/" class="btn btn-primary">Back to home <span>↖</span></a>
+      <a href="/#work" class="btn btn-ghost">See my work</a>
+      <a href="/#contact" class="btn btn-ghost">Contact me</a>
+      <a href="/assets/Amrit-Thapa-CV.pdf" class="btn btn-ghost" download>Download CV <span>↓</span></a>
+    </nav>
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer mono">
+    <span>© Amrit Thapa</span>
+    <span>Made in Brisbane ✺</span>
+    <a href="/">amritthapa.com</a>
+  </footer>
+</body>
+</html>
