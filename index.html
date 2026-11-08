@@ -100,10 +100,13 @@
   <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Bump ?v= whenever styles.css changes so browsers don't use an old cached copy -->
-  <link rel="stylesheet" href="styles.css?v=202611091030" />
+  <link rel="stylesheet" href="styles.css?v=202611091200" />
 </head>
 
 <body>
+  <!-- Lets keyboard / screen-reader users jump straight past the navigation -->
+  <a class="skip-link" href="#top">Skip to main content</a>
+
   <!-- Custom mouse cursor (desktop only, moved by script.js) -->
   <div class="cursor" aria-hidden="true"></div>
 
@@ -121,17 +124,22 @@
       <a href="#contact">Contact</a>
     </nav>
 
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">◐</button>
+    <!-- Pause/play all looping animations (marquee, rotating word, badge) -->
+    <button class="icon-btn motion-toggle" id="motionToggle" type="button" aria-pressed="false" aria-label="Pause animations">
+      <span class="motion-icon" aria-hidden="true">❚❚</span>
+    </button>
+
+    <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme">◐</button>
 
     <!-- Hamburger, only visible on mobile -->
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
       <span></span>
       <span></span>
     </button>
   </header>
 
 
-  <main id="top">
+  <main id="top" tabindex="-1">
 
     <!-- ============================================================
          HERO
@@ -265,12 +273,13 @@
         <h2 class="section-title reveal">Things I've<br /><span class="outline">built lately</span></h2>
       </div>
 
-      <div class="filters mono" role="tablist">
-        <button class="filter active" data-filter="all">All</button>
-        <button class="filter" data-filter="laravel">Laravel</button>
-        <button class="filter" data-filter="wordpress">WordPress</button>
-        <button class="filter" data-filter="frontend">Front-end</button>
-        <button class="filter" data-filter="design">Design</button>
+      <!-- Toggle buttons — aria-pressed tells screen readers which one is active -->
+      <div class="filters mono" role="group" aria-label="Filter projects by type">
+        <button class="filter active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter" type="button" data-filter="laravel" aria-pressed="false">Laravel</button>
+        <button class="filter" type="button" data-filter="wordpress" aria-pressed="false">WordPress</button>
+        <button class="filter" type="button" data-filter="frontend" aria-pressed="false">Front-end</button>
+        <button class="filter" type="button" data-filter="design" aria-pressed="false">Design</button>
       </div>
 
       <div class="projects">
@@ -304,12 +313,14 @@
         <!-- Project 02: Opal Rush (the reels actually spin — see script.js) -->
         <article class="project reveal" data-cat="frontend">
           <div class="project-visual v-slots">
-            <div class="reels" id="reels">
+            <div class="reels" id="reels" aria-hidden="true">
               <div class="reel"><span>💎</span></div>
               <div class="reel"><span>🍒</span></div>
               <div class="reel"><span>⭐</span></div>
             </div>
-            <button class="spin-btn mono" id="spinBtn">SPIN</button>
+            <button class="spin-btn mono" id="spinBtn" type="button" aria-label="Spin the demo slot machine">SPIN</button>
+            <!-- Read out the result for screen-reader users -->
+            <p class="sr-only" id="slotResult" aria-live="polite"></p>
           </div>
 
           <div class="project-body">
@@ -397,7 +408,7 @@
           <div class="project-visual v-menu">
             <div class="menu-card">
               <small class="mono">Hotel</small>
-              <h4>Tharu Garden</h4>
+              <p class="menu-name">Tharu Garden</p>
               <small class="mono">Sauraha · Chitwan</small>
               <hr />
               <p><span>Dal Bhat Set</span><span>650</span></p>
@@ -594,6 +605,7 @@
               name="name"
               placeholder="Your name"
               autocomplete="name"
+              aria-describedby="formStatus"
               minlength="2"
               maxlength="100"
               required
@@ -608,6 +620,7 @@
               name="email"
               placeholder="you@company.com"
               autocomplete="email"
+              aria-describedby="formStatus"
               maxlength="150"
               required
               aria-required="true"
@@ -622,6 +635,7 @@
               placeholder="Tell me about the role or project…"
               minlength="10"
               maxlength="5000"
+              aria-describedby="formStatus"
               required
               aria-required="true"
             ></textarea>
@@ -657,6 +671,6 @@
 
   <!-- Scripts -->
   <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-  <script src="script.js?v=202611091030"></script>
+  <script src="script.js?v=202611091200"></script>
 </body>
 </html>

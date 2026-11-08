@@ -19,9 +19,10 @@
  *  13. Experience timeline
  *  14. Contact + form
  *  15. Footer
- *  16. Scroll reveal animation
- *  17. Responsive
- *  18. Reduced motion
+ *  16. Accessibility helpers
+ *  17. Scroll reveal animation
+ *  18. Responsive
+ *  19. Reduced motion
  */
 
 
@@ -99,8 +100,10 @@
   --muted: #5d574e;
   --line: #141210;
   --card: #fffaf1;
-  --accent: #ff4d1c;       /* the orange */
-  --accent-2: #2b50ff;
+  --accent: #ff4d1c;       /* the orange — for fills, lines and big shapes */
+  --accent-text: #e8400f;  /* slightly deeper orange for text on cream (passes contrast) */
+  --on-accent: #141210;    /* text colour on top of orange */
+  --success: #4ade80;
 
   --radius: 22px;
   --pad: clamp(16px, 5vw, 72px);  /* side padding, grows with screen */
@@ -113,6 +116,7 @@
 }
 
 :root[data-theme="dark"] {
+  --accent-text: #ff4d1c;  /* bright orange is fine on the dark background */
   --bg: #0f0e0c;
   --bg-2: #1a1815;
   --ink: #f4efe6;
@@ -165,7 +169,7 @@ button {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 /* Little utility classes used all over the page */
@@ -176,7 +180,7 @@ button {
 }
 
 .accent {
-  color: var(--accent);
+  color: var(--accent-text);
   font-style: normal;
 }
 
@@ -263,7 +267,7 @@ body::before {
 }
 
 .logo span {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .nav-links {
@@ -292,7 +296,7 @@ body::before {
   width: 100%;
 }
 
-.theme-toggle {
+.icon-btn {
   width: 40px;
   height: 40px;
   border: 1.5px solid var(--line);
@@ -303,6 +307,11 @@ body::before {
 }
 
 /* Hamburger — only shown on small screens (see Responsive) */
+.motion-icon {
+  font-size: .7rem;
+  letter-spacing: -2px;
+}
+
 .menu-btn {
   display: none;
   flex-direction: column;
@@ -475,7 +484,7 @@ body::before {
 .btn-primary:hover {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .btn-ghost {
@@ -516,7 +525,7 @@ body::before {
   display: grid;
   place-items: center;
   font-size: 2rem;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 @keyframes spin {
@@ -636,7 +645,7 @@ body::before {
   font-family: var(--display);
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   line-height: 1;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .stats span {
@@ -1018,7 +1027,8 @@ body::before {
   transform: rotate(-2deg) scale(1.04);
 }
 
-.menu-card h4 {
+/* .menu-card prefix beats ".project p", which would turn this grey */
+.menu-card .menu-name {
   font-family: Georgia, serif;
   font-size: 1.7rem;
   font-style: italic;
@@ -1032,6 +1042,7 @@ body::before {
 }
 
 .menu-card p {
+  color: #2f3e2c; /* fixed colours — the card looks the same in both themes */
   display: flex;
   justify-content: space-between;
   margin: 6px 0;
@@ -1076,7 +1087,7 @@ body::before {
 }
 
 .skill-card:hover {
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .skill-card:hover::before {
@@ -1188,9 +1199,19 @@ body::before {
    This section uses inverted colours (dark block in light mode).
    =============================================================== */
 .contact {
+  /* Inverted block, so flip the text-safe accent/success colours too */
+  --accent-text: #ff4d1c;
+  --success: #4ade80;
+
   border-radius: 40px 40px 0 0;
   background: var(--ink);
   color: var(--bg);
+}
+
+/* In dark mode this block turns cream, so use darker, readable versions */
+:root[data-theme="dark"] .contact {
+  --accent-text: #c0360a;
+  --success: #166534;
 }
 
 .contact .section-label {
@@ -1235,7 +1256,7 @@ body::before {
 }
 
 .contact-big:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .socials {
@@ -1275,7 +1296,7 @@ body::before {
 
 /* Red star on required fields */
 .req {
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 400;
 }
 
@@ -1300,7 +1321,7 @@ body::before {
 }
 
 .contact-form ::placeholder {
-  color: color-mix(in srgb, var(--bg) 35%, transparent);
+  color: color-mix(in srgb, var(--bg) 60%, var(--ink));
 }
 
 /* Field with an error (set by script.js) */
@@ -1329,7 +1350,7 @@ body::before {
   margin-top: 8px;
   border-color: var(--accent);
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .contact-form .btn-primary:hover {
@@ -1349,11 +1370,11 @@ body::before {
 }
 
 .form-status[data-type="success"] {
-  color: #4ade80;
+  color: var(--success);
 }
 
 .form-status[data-type="error"] {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 
@@ -1372,12 +1393,79 @@ body::before {
 }
 
 .footer a:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 
 /* ===============================================================
-   16. Scroll reveal animation
+   16. Accessibility helpers
+   =============================================================== */
+
+/* Clear focus ring for keyboard users (mouse clicks don't show it) */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.btn:focus-visible,
+.filter:focus-visible,
+.icon-btn:focus-visible,
+.socials a:focus-visible {
+  border-radius: 999px;
+}
+
+/* Inputs already have an underline — just make it thicker on focus */
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: none;
+  box-shadow: 0 2px 0 0 var(--accent);
+}
+
+/* "Skip to main content" — hidden until it receives keyboard focus */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 300;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 600;
+  transform: translateY(-150%);
+  transition: transform .2s;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* Main gets focus from the skip link — no ring needed on the whole page */
+main:focus {
+  outline: none;
+}
+
+/* Text only screen readers can hear */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Animations paused with the ❚❚ button (or reduced-motion setting) */
+:root[data-motion="paused"] .marquee-track,
+:root[data-motion="paused"] .hero-badge svg,
+:root[data-motion="paused"] .dot {
+  animation-play-state: paused;
+}
+
+
+/* ===============================================================
+   17. Scroll reveal animation
    script.js adds .in when the element scrolls into view.
    =============================================================== */
 .reveal {
@@ -1395,7 +1483,7 @@ body::before {
 
 
 /* ===============================================================
-   17. Responsive
+   18. Responsive
    =============================================================== */
 
 /* Tablets / small laptops */
@@ -1429,12 +1517,15 @@ body::before {
     font-weight: 800;
     font-size: 2.4rem;
     text-transform: uppercase;
+    visibility: hidden; /* keeps hidden links out of the Tab order */
     transform: translateY(-100%);
-    transition: transform .5s var(--ease-out);
+    transition: transform .5s var(--ease-out), visibility 0s .5s;
   }
 
   .nav-links.open {
+    visibility: visible;
     transform: none;
+    transition: transform .5s var(--ease-out), visibility 0s;
   }
 
   .about-grid,
@@ -1496,7 +1587,7 @@ body::before {
 
 
 /* ===============================================================
-   18. Reduced motion
+   19. Reduced motion
    For visitors who've asked their device to minimise animation.
    =============================================================== */
 @media (prefers-reduced-motion: reduce) {

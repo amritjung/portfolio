@@ -9,6 +9,7 @@
  *   2. Settings
  *   3. Small helpers
  *   4. Light / dark theme
+ *   4b. Pause animations
  *   5. Navigation
  *   6. Hero word rotator
  *   7. Scroll reveal + number counters
@@ -105,6 +106,36 @@ themeButton.addEventListener("click", () => {
 
 
 /* ---------------------------------------------------------------
+ * 4b. Pause animations
+ * The ❚❚ button stops everything that loops (marquee, rotating
+ * word, spinning badge). It starts paused if the visitor's device
+ * is set to "reduce motion". The choice is remembered.
+ * ------------------------------------------------------------- */
+const motionButton = $("#motionToggle");
+const motionIcon = $(".motion-icon", motionButton);
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const savedMotion = storage.get("motion");
+let motionPaused = savedMotion ? savedMotion === "paused" : prefersReducedMotion;
+
+function setMotionPaused(paused) {
+  motionPaused = paused;
+  root.dataset.motion = paused ? "paused" : "running";
+
+  motionButton.setAttribute("aria-pressed", paused);
+  motionButton.setAttribute("aria-label", paused ? "Play animations" : "Pause animations");
+  motionIcon.textContent = paused ? "▶" : "❚❚";
+}
+
+setMotionPaused(motionPaused);
+
+motionButton.addEventListener("click", () => {
+  setMotionPaused(!motionPaused);
+  storage.set("motion", motionPaused ? "paused" : "running");
+});
+
+
+/* ---------------------------------------------------------------
  * 5. Navigation
  * - Adds a background to the nav once you scroll down a bit
  * - Opens/closes the full-screen menu on mobile
@@ -122,6 +153,7 @@ window.addEventListener(
 function setMenuOpen(isOpen) {
   navLinks.classList.toggle("open", isOpen);
   menuButton.setAttribute("aria-expanded", isOpen);
+  menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
   // Stop the page behind the menu from scrolling
   document.body.style.overflow = isOpen ? "hidden" : "";
 }
@@ -135,6 +167,14 @@ $$("#navLinks a").forEach((link) => {
   link.addEventListener("click", () => setMenuOpen(false));
 });
 
+// ...or when pressing Escape
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && navLinks.classList.contains("open")) {
+    setMenuOpen(false);
+    menuButton.focus();
+  }
+});
+
 
 /* ---------------------------------------------------------------
  * 6. Hero word rotator
@@ -145,6 +185,8 @@ const rotator = $("#rotator");
 let wordIndex = 0;
 
 setInterval(() => {
+  if (motionPaused) return; // respect the pause button
+
   rotator.classList.add("out"); // fade the current word out
 
   setTimeout(() => {
@@ -180,6 +222,13 @@ $$(".reveal").forEach((el) => revealObserver.observe(el));
 function countUp(el) {
   const target = Number(el.dataset.target);
   const suffix = el.dataset.suffix || "";
+
+  // No counting animation if motion is turned off — just show the number
+  if (motionPaused) {
+    el.textContent = target + suffix;
+    return;
+  }
+
   const duration = 1400;
   const startTime = performance.now();
 
@@ -248,7 +297,11 @@ filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const category = button.dataset.filter;
 
-    filterButtons.forEach((b) => b.classList.toggle("active", b === button));
+    filterButtons.forEach((b) => {
+      const isActive = b === button;
+      b.classList.toggle("active", isActive);
+      b.setAttribute("aria-pressed", isActive);
+    });
 
     projects.forEach((project) => {
       const visible = category === "all" || project.dataset.cat === category;
@@ -268,6 +321,7 @@ filterButtons.forEach((button) => {
  * ------------------------------------------------------------- */
 const SLOT_SYMBOLS = ["💎", "🍒", "⭐", "🔔", "7️⃣", "🍀"];
 const spinButton = $("#spinBtn");
+const slotResult = $("#slotResult");
 const reels = $$(".reel");
 
 const randomSymbol = () => SLOT_SYMBOLS[Math.floor(Math.random() * SLOT_SYMBOLS.length)];
@@ -318,6 +372,9 @@ spinButton.addEventListener("click", () => {
 
       if (allMatch) showWinMessage(machine, "★ BIG WIN ★");
       else if (twoMatch) showWinMessage(machine, "Nice!");
+
+      const outcome = allMatch ? "Big win!" : twoMatch ? "Two in a row!" : "No win, try again.";
+      slotResult.textContent = `Result: ${results.join(" ")}. ${outcome}`;
     }, 600 + i * 350);
   });
 });
