@@ -1,0 +1,3 @@
+# Local files that must never be published
+Claude outputs/
+.DS_Store
