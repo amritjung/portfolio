@@ -260,6 +260,7 @@ body::before {
 .form-status { min-height: 1.2em; color: color-mix(in srgb, var(--bg) 70%, transparent); }
 .form-status[data-type="success"] { color: #4ade80; }
 .form-status[data-type="error"] { color: var(--accent); }
+.h-captcha { min-height: 78px; }
 .contact-form button:disabled { opacity: .6; cursor: wait; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 

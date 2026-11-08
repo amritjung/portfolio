@@ -2,7 +2,8 @@
 // Contact form is delivered by Web3Forms (https://web3forms.com).
 // The access key is safe to keep in front-end code — it only allows sending to your inbox.
 const WEB3FORMS_KEY = "4dd9c5d2-81f8-47c4-9f30-46dd6e2654bd";
-const CONTACT_EMAIL = "amritthapa555@gmail.com";
+// Email is assembled at runtime so simple scrapers can't harvest it from the HTML.
+const CONTACT_EMAIL = ["amritthapa555", "gmail.com"].join("@");
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -142,24 +143,85 @@ function updateLoan() {
 range.addEventListener("input", updateLoan);
 updateLoan();
 
-// ===== Contact form =====
+// ===== Contact email link (obfuscated) =====
+$$("[data-email]").forEach(a => {
+  a.href = "mailto:" + CONTACT_EMAIL;
+  const label = $(".email-text", a);
+  if (label) label.textContent = CONTACT_EMAIL;
+});
+
+// ===== Contact form (hardened) =====
 const form = $("#contactForm"), status = $("#formStatus"), submitBtn = $("button[type=submit]", form);
 const setStatus = (msg, type = "") => { status.textContent = msg; status.dataset.type = type; };
 
+const LOADED_AT = Date.now();
+const MIN_FILL_MS = 4000;          // humans take longer than 4s to fill a form
+const COOLDOWN_MS = 60 * 1000;     // one message per minute per browser
+const MAX_PER_SESSION = 3;         // cap per tab session
+const EMAIL_RE = /^[^\s@<>()[\]\\,;:"]{1,64}@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,24}$/;
+const URL_RE = /(https?:\/\/|www\.)/gi;
+
+const store = {
+  get(k) { try { return sessionStorage.getItem(k) ?? localStorage.getItem(k); } catch { return null; } },
+  set(k, v, session) { try { (session ? sessionStorage : localStorage).setItem(k, v); } catch {} },
+};
+// Strip control/invisible characters and collapse whitespace
+const clean = (v, multiline = false) => {
+  let t = String(v ?? "").normalize("NFKC").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F​-‏‪-‮⁠-⁤﻿]/g, "");
+  t = multiline ? t.replace(/\r\n?/g, "\n").replace(/\n{4,}/g, "\n\n\n") : t.replace(/\s+/g, " ");
+  return t.trim();
+};
+
+function validate({ name, email, message }) {
+  if (name.length < 2 || name.length > 100) return "Please enter your name (2–100 characters).";
+  if (URL_RE.test(name) || /[<>{}]/.test(name)) return "Your name can't contain links or special symbols.";
+  URL_RE.lastIndex = 0;
+  if (!EMAIL_RE.test(email) || email.length > 150) return "Please enter a valid email address.";
+  if (message.length < 10) return "Your message is a bit short — tell me a little more.";
+  if (message.length > 5000) return "Please keep your message under 5,000 characters.";
+  const links = message.match(URL_RE) || [];
+  URL_RE.lastIndex = 0;
+  if (links.length > 2) return "Please include no more than 2 links.";
+  return null;
+}
+
 form.addEventListener("submit", async e => {
   e.preventDefault();
-  const data = Object.fromEntries(new FormData(form));
-  if (data.botcheck) return; // honeypot: bots fill hidden fields
+  const raw = Object.fromEntries(new FormData(form));
 
-  if (!WEB3FORMS_KEY || WEB3FORMS_KEY.includes("YOUR_")) {
-    setStatus(`Form not configured yet — please email ${CONTACT_EMAIL}.`, "error");
+  // Bot traps: hidden honeypot field or impossibly fast submission → pretend success, send nothing
+  if (raw.botcheck || Date.now() - LOADED_AT < MIN_FILL_MS) {
+    form.reset();
+    setStatus("Thanks! Your message is on its way.", "success");
     return;
   }
 
+  // Throttling
+  const last = +store.get("contact_last") || 0;
+  const count = +store.get("contact_count") || 0;
+  if (Date.now() - last < COOLDOWN_MS) {
+    setStatus("Please wait a minute before sending another message.", "error");
+    return;
+  }
+  if (count >= MAX_PER_SESSION) {
+    setStatus(`You've sent a few messages already — please email ${CONTACT_EMAIL} instead.`, "error");
+    return;
+  }
+
+  const data = { name: clean(raw.name), email: clean(raw.email).toLowerCase(), message: clean(raw.message, true) };
+  const problem = validate(data);
+  if (problem) { setStatus(problem, "error"); return; }
+
+  const captcha = raw["h-captcha-response"];
+  if (!captcha) { setStatus("Please complete the “I am human” check.", "error"); return; }
+
   submitBtn.disabled = true;
   const label = submitBtn.innerHTML;
-  submitBtn.innerHTML = "Sending…";
+  submitBtn.textContent = "Sending…";
   setStatus("");
+
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 15000);
 
   try {
     const res = await fetch("https://api.web3forms.com/submit", {
@@ -167,22 +229,32 @@ form.addEventListener("submit", async e => {
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
         access_key: WEB3FORMS_KEY,
-        subject: `Portfolio enquiry from ${data.name}`,
+        subject: `Portfolio enquiry from ${data.name}`.slice(0, 150),
         from_name: "amritthapa.com",
         replyto: data.email,
         name: data.name,
         email: data.email,
         message: data.message,
+        "h-captcha-response": captcha,
       }),
+      signal: ctrl.signal,
+      credentials: "omit",
+      referrerPolicy: "strict-origin",
     });
     const json = await res.json().catch(() => ({}));
-    if (!res.ok || !json.success) throw new Error(json.message || "Request failed");
+    if (!res.ok || !json.success) throw new Error(json.message || `HTTP ${res.status}`);
+    store.set("contact_last", String(Date.now()));
+    store.set("contact_count", String(count + 1), true);
     form.reset();
     setStatus("Thanks! Your message is on its way — I'll reply soon.", "success");
   } catch (err) {
-    console.error(err);
-    setStatus(`Sorry, that didn't send. Please try again or email ${CONTACT_EMAIL}.`, "error");
+    console.error("Contact form error:", err);
+    setStatus(err.name === "AbortError"
+      ? `That took too long. Please try again or email ${CONTACT_EMAIL}.`
+      : `Sorry, that didn't send. Please try again or email ${CONTACT_EMAIL}.`, "error");
   } finally {
+    clearTimeout(timer);
+    try { window.hcaptcha?.reset(); } catch {}
     submitBtn.disabled = false;
     submitBtn.innerHTML = label;
   }
