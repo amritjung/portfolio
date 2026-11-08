@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>randoJeans — Case Study · Amrit Thapa</title>
+  <meta name="description" content="randoJeans: a denim e-commerce store I designed and built solo with Laravel 13, Livewire 4 and Filament 5 — Stripe checkout, discount codes, returns, reviews and a full admin panel." />
+  <meta name="author" content="Amrit Thapa" />
+  <link rel="canonical" href="https://amritthapa.com/work/randojeans/" />
+
+  <!-- Same security policy as the other case-study pages -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src 'self';
+    style-src 'self';
+    font-src 'self';
+    img-src 'self' data:;
+    manifest-src 'self';
+    form-action 'none';
+    base-uri 'none';
+    object-src 'none'
+  " />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Icons -->
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#141210" />
+
+  <!-- Structured data: an article about a piece of software I built -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "randoJeans — Case Study",
+      "description": "A denim e-commerce store built solo with Laravel 13, Livewire 4 and Filament 5.",
+      "url": "https://amritthapa.com/work/randojeans/",
+      "datePublished": "2026-11-09T14:00:00+10:00",
+      "dateModified": "2026-11-09T14:00:00+10:00",
+      "author": {
+        "@type": "Person",
+        "name": "Amrit Thapa",
+        "url": "https://amritthapa.com/"
+      },
+      "about": {
+        "@type": "SoftwareSourceCode",
+        "name": "randoJeans",
+        "codeRepository": "https://github.com/amritjung/randojeans",
+        "programmingLanguage": "PHP"
+      }
+    }
+  </script>
+
+  <link rel="preload" href="/assets/fonts/syne-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/styles.css?v=202611091700" />
+</head>
+
+<body class="case-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="cursor" aria-hidden="true"></div>
+
+
+  <!-- ============================================================
+       NAVIGATION (case-study version)
+       ============================================================ -->
+  <header class="nav">
+    <a href="/" class="logo">amrit<span>.</span></a>
+
+    <nav class="case-nav" aria-label="Case study navigation">
+      <a href="/#work">← All work</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+
+    <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme">◐</button>
+  </header>
+
+
+  <main id="main" tabindex="-1">
+
+    <!-- ============================================================
+         INTRO
+         ============================================================ -->
+    <section class="case-hero">
+      <p class="eyebrow mono">Case study · Personal project · E-commerce</p>
+
+      <h1 class="case-title">
+        rando<br />
+        <span class="accent">jeans</span>
+        <span class="outline">store</span>
+      </h1>
+
+      <p class="case-lead">
+        A complete denim e-commerce store I designed and built on my own — from the product
+        catalogue and <strong>Stripe checkout</strong> to returns, reviews, emails and a full
+        <strong>admin panel</strong>.
+      </p>
+
+      <div class="hero-cta case-actions">
+        <a href="https://github.com/amritjung/randojeans" class="btn btn-primary magnetic" target="_blank" rel="noopener noreferrer">View the code on GitHub <span>↗</span></a>
+      </div>
+
+      <!-- Quick facts -->
+      <dl class="case-meta">
+        <div>
+          <dt class="mono">Role</dt>
+          <dd>Solo — design, front end, back end and admin</dd>
+        </div>
+        <div>
+          <dt class="mono">Type</dt>
+          <dd>Personal project</dd>
+        </div>
+        <div>
+          <dt class="mono">Built</dt>
+          <dd>August 2026</dd>
+        </div>
+        <div>
+          <dt class="mono">Stack</dt>
+          <dd>PHP 8.4, Laravel 13, Livewire 4, Filament 5, Tailwind CSS 4, Alpine.js, Stripe, Pest</dd>
+        </div>
+      </dl>
+    </section>
+
+
+    <!-- ============================================================
+         KEY NUMBERS (counted from the repository)
+         ============================================================ -->
+    <section class="case-section">
+      <ul class="case-stats">
+        <li><strong>24</strong><span>Livewire page components</span></li>
+        <li><strong>7</strong><span>admin areas in Filament</span></li>
+        <li><strong>10</strong><span>transactional emails</span></li>
+        <li><strong>37</strong><span>database migrations</span></li>
+      </ul>
+    </section>
+
+
+    <!-- ============================================================
+         01 · THE IDEA
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">01 / The idea</div>
+      <div class="case-copy">
+        <h2>A real store, not a tutorial cart</h2>
+        <p>
+          I wanted a project that covers everything a small online shop actually needs —
+          not just a product list and a cart, but payments, discount codes, order tracking,
+          returns, reviews, emails and an admin panel to run it all.
+        </p>
+        <p>
+          It's built on the newest Laravel stack: Laravel 13, Livewire 4 single-file page
+          components for every customer-facing page, and Filament 5 for the admin side.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         02 · WHAT CUSTOMERS CAN DO
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">02 / For customers</div>
+      <h2 class="case-h2">The shopping side</h2>
+
+      <div class="case-cards">
+        <article class="case-card">
+          <h3>Product pages</h3>
+          <p>Full-bleed image gallery, a lightbox with zoom and pan, and size selection by waist and inseam that only offers combinations in stock.</p>
+        </article>
+        <article class="case-card">
+          <h3>Cart &amp; checkout</h3>
+          <p>Discount codes, free shipping over $150, GST worked out on the total, then payment on Stripe's secure checkout page.</p>
+        </article>
+        <article class="case-card">
+          <h3>Accounts</h3>
+          <p>Registration, email verification, password reset, saved addresses, order history, a wishlist and account deletion requests.</p>
+        </article>
+        <article class="case-card">
+          <h3>After the sale</h3>
+          <p>Order emails at every step, a PDF invoice, return requests within 30 days, and product reviews.</p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         03 · CHECKOUT & PAYMENTS
+         Same ordered-list diagram as the Open Banking case study.
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">03 / Checkout &amp; payments</div>
+      <h2 class="case-h2">From cart to confirmed order</h2>
+
+      <ul class="flow-key mono" aria-label="Who is involved">
+        <li><span class="chip chip-customer"></span>Customer</li>
+        <li><span class="chip chip-gateway"></span>randoJeans app</li>
+        <li><span class="chip chip-bank"></span>Stripe</li>
+      </ul>
+
+      <ol class="flow">
+        <li class="flow-step">
+          <span class="flow-num">1</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>Customer → <span class="chip chip-gateway"></span>App</p>
+            <h3>Checkout submitted</h3>
+            <p>Details are validated, and an optional discount code is checked — active, not expired, under its usage limit and not already used by that email.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">2</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-gateway"></span>App</p>
+            <h3>Order saved as pending</h3>
+            <p>The order, line items and any discount usage are recorded before the customer leaves the site.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">3</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-gateway"></span>App → <span class="chip chip-bank"></span>Stripe</p>
+            <h3>Stripe Checkout session</h3>
+            <p>A Stripe Checkout session is created, with a one-off Stripe coupon if a discount was applied.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">4</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>Customer ↔ <span class="chip chip-bank"></span>Stripe</p>
+            <h3>Customer pays</h3>
+            <p>Card details are entered on Stripe's own page, so they never touch my server.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">5</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-bank"></span>Stripe → <span class="chip chip-gateway"></span>App</p>
+            <h3>Signed webhook</h3>
+            <p>Stripe calls a webhook. The signature is verified before anything is trusted, then the order is marked paid.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">6</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-gateway"></span>App → <span class="chip chip-customer"></span>Customer</p>
+            <h3>Confirmation + invoice</h3>
+            <p>The status change triggers an order confirmation email with a PDF invoice attached.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+
+    <!-- ============================================================
+         04 · ORDER LIFECYCLE
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">04 / After checkout</div>
+      <div class="case-copy">
+        <h2>Every status change does something</h2>
+        <p>
+          An order moves through <strong>pending → paid → ready to ship → shipped → delivered</strong>.
+          Model events watch for each change, stamp the time it happened and send the matching
+          email, so the admin only ever has to update one field.
+        </p>
+        <ul class="case-list">
+          <li>Shipped orders get a direct tracking link for supported carriers, such as Australia Post.</li>
+          <li>Seven days after delivery, a scheduled command emails a review reminder — once per order.</li>
+          <li>Delivered orders can be returned within 30 days. Admins approve or reject the request, and the customer is emailed either way.</li>
+          <li>New reviews and return requests notify the admins by email.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         05 · ADMIN PANEL
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">05 / Admin panel</div>
+      <h2 class="case-h2">Running the shop with Filament 5</h2>
+
+      <div class="arch" role="img" aria-label="Diagram: admins use the Filament admin panel, which manages products, orders, returns, reviews, discounts, customers, admin users and the homepage content, all stored in the shop database.">
+        <div class="arch-side">
+          <span class="chip chip-customer"></span>
+          <strong>Admins</strong>
+          <small class="mono">only users flagged as admin</small>
+        </div>
+
+        <div class="arch-arrow" aria-hidden="true">⇄</div>
+
+        <div class="arch-core">
+          <p class="arch-title mono"><span class="chip chip-gateway"></span>Filament admin</p>
+          <ul>
+            <li>Products, images &amp; variants</li>
+            <li>Orders &amp; line items</li>
+            <li>Return requests</li>
+            <li>Reviews</li>
+            <li>Discount codes</li>
+            <li>Customers &amp; their orders</li>
+            <li class="arch-wide">Admin users · homepage editor (video &amp; section backgrounds)</li>
+          </ul>
+        </div>
+
+        <div class="arch-arrow" aria-hidden="true">⇄</div>
+
+        <div class="arch-side">
+          <span class="chip chip-bank"></span>
+          <strong>Shop database</strong>
+          <small class="mono">14 Eloquent models</small>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         06 · SECURITY & RELIABILITY
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">06 / Security &amp; reliability</div>
+      <h2 class="case-h2">Guarding the places that matter</h2>
+
+      <div class="case-cards">
+        <article class="case-card">
+          <h3>Card-testing guard</h3>
+          <p>Checkout is rate-limited per IP (8 attempts per 10 minutes) to stop scripted attempts with stolen cards.</p>
+        </article>
+        <article class="case-card">
+          <h3>No double orders</h3>
+          <p>An atomic cache lock per session means a fast double-click can only ever create one order.</p>
+        </article>
+        <article class="case-card">
+          <h3>Verified webhooks</h3>
+          <p>Every Stripe webhook's signature is checked before an order can be marked as paid.</p>
+        </article>
+        <article class="case-card">
+          <h3>Brute-force limits</h3>
+          <p>Login, discount codes and email-verification links are all throttled, and verification links are signed.</p>
+        </article>
+      </div>
+
+      <!-- Short real excerpt from the repo (lightly trimmed) -->
+      <figure class="case-code">
+        <figcaption class="mono">app/Http/Controllers/StripeWebhookController.php (excerpt)</figcaption>
+<pre tabindex="0" aria-label="Code excerpt: Stripe webhook signature check"><code>try {
+    $event = Webhook::constructEvent(
+        $request->getContent(),
+        $request->header('Stripe-Signature'),
+        config('services.stripe.webhook_secret'),
+    );
+} catch (SignatureVerificationException $e) {
+    Log::warning('Stripe webhook signature verification failed: ' . $e->getMessage());
+    return response('Invalid signature', 400);
+}</code></pre>
+      </figure>
+    </section>
+
+
+    <!-- ============================================================
+         07 · HOW IT'S BUILT
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">07 / How it's built</div>
+      <div class="case-copy">
+        <h2>Modern Laravel, kept tidy</h2>
+        <ul class="case-list">
+          <li>Every storefront page is a Livewire 4 single-file component, routed with <code>Route::livewire()</code>.</li>
+          <li>Alpine.js handles the small interactive bits, such as the gallery lightbox.</li>
+          <li>Invoices are rendered from a Blade view to PDF with DomPDF.</li>
+          <li>A GitHub Actions pipeline runs Pint (code style), Larastan (static analysis) and Pest on every push, and Dependabot keeps dependencies current.</li>
+          <li>Custom error pages for 403, 404, 419, 429 and 500.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CALL TO ACTION
+         ============================================================ -->
+    <section class="case-cta">
+      <h2>Want to see how it's put together? The <span class="accent">code</span> is public.</h2>
+      <div class="hero-cta">
+        <a href="https://github.com/amritjung/randojeans" class="btn btn-primary magnetic" target="_blank" rel="noopener noreferrer">View on GitHub <span>↗</span></a>
+        <a href="/#contact" class="btn btn-ghost magnetic">Get in touch</a>
+        <a href="/work/open-banking-gateway/" class="btn btn-ghost magnetic">← Open Banking gateway</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer mono">
+    <span>© <span id="year"></span> Amrit Thapa</span>
+    <span>Made in Brisbane ✺</span>
+    <a href="#main">Back to top ↑</a>
+  </footer>
+
+  <script src="/script.js?v=202611091700" defer></script>
+</body>
+</html>

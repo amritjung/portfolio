@@ -791,6 +791,18 @@ body::before {
   font-weight: 600;
 }
 
+/* Two links side by side (case study + GitHub) */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: auto;
+}
+
+.project-links .project-link {
+  margin-top: 0;
+}
+
 .project-link span {
   transition: transform .25s;
 }
@@ -1846,6 +1858,7 @@ main:focus {
 }
 
 .case-copy p + p,
+.case-copy p + .case-list,
 .case-list + p {
   margin-top: 14px;
 }
@@ -2074,6 +2087,46 @@ main:focus {
 .case-card p {
   font-size: .92rem;
   color: var(--muted);
+}
+
+/* --- Buttons under the intro (e.g. "View the code on GitHub") -- */
+.case-actions {
+  margin-top: 28px;
+}
+
+/* --- Code excerpt ----------------------------------------------- */
+.case-code {
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: #141210;
+}
+
+.case-code figcaption {
+  padding: 10px 16px;
+  border-bottom: 1px solid #3a3530;
+  color: #a39b8e;
+  font-size: .72rem;
+}
+
+.case-code pre {
+  margin: 0;
+  padding: 18px 16px;
+  overflow-x: auto;
+  color: #f4efe6;
+  font-family: var(--mono);
+  font-size: .82rem;
+  line-height: 1.6;
+}
+
+/* Inline code inside sentences */
+.case-copy code {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--bg-2);
+  font-family: var(--mono);
+  font-size: .85em;
 }
 
 /* --- Closing call to action ------------------------------------ */
@@ -2440,8 +2493,20 @@ main:focus {
 
   .flow-step,
   .case-card,
-  .arch {
+  .arch,
+  .case-code {
     break-inside: avoid;
+  }
+
+  .case-actions {
+    display: none !important;
+  }
+
+  .case-code,
+  .case-code figcaption,
+  .case-code pre {
+    background: #fff !important;
+    color: #000 !important;
   }
 
   /* Spell out web addresses after external links */

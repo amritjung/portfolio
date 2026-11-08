@@ -101,7 +101,7 @@
   <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Bump ?v= whenever styles.css changes so browsers don't use an old cached copy -->
-  <link rel="stylesheet" href="styles.css?v=202611091600" />
+  <link rel="stylesheet" href="styles.css?v=202611091700" />
 </head>
 
 <body>
@@ -332,28 +332,34 @@
           </div>
         </article>
 
-        <!-- Project 02: randoJeans -->
+        <!-- Project 02: randoJeans (personal project — has a case study + public repo) -->
         <article class="project reveal" data-cat="laravel">
-          <div class="project-visual v-denim">
+          <div class="project-visual v-denim" aria-hidden="true">
             <div class="denim-tag"><span>rando</span>JEANS</div>
             <div class="stitch"></div>
           </div>
 
           <div class="project-body">
-            <div class="project-meta mono"><span>02</span><span>E-commerce · 2026</span></div>
+            <div class="project-meta mono"><span>02</span><span>Personal project · 2026</span></div>
             <h3>randoJeans</h3>
             <p>
-              A denim e-commerce store with a Filament admin panel, live Livewire filtering with URL
-              state, a full-bleed product gallery with zoom/pan lightbox, and dependent waist/inseam
-              size selectors. Cart supports guest sessions and logged-in users with merge-on-login.
+              A complete denim e-commerce store I built solo — Stripe checkout with verified
+              webhooks, discount codes, PDF invoices, returns, reviews and order emails, plus a
+              Filament admin panel to run it all. Product pages feature a zoomable gallery and
+              waist/inseam size selection.
             </p>
             <ul class="tags mono">
               <li>PHP 8.4</li>
               <li>Laravel 13</li>
-              <li>Livewire</li>
-              <li>Filament v5</li>
-              <li>Tailwind v4</li>
+              <li>Livewire 4</li>
+              <li>Filament 5</li>
+              <li>Stripe</li>
+              <li>Tailwind 4</li>
             </ul>
+            <div class="project-links">
+              <a href="/work/randojeans/" class="project-link">Read the case study <span>→</span></a>
+              <a href="https://github.com/amritjung/randojeans" class="project-link" target="_blank" rel="noopener noreferrer">Code on GitHub <span>↗</span></a>
+            </div>
           </div>
         </article>
 
@@ -713,6 +719,6 @@
 
 
   <!-- Scripts (hCaptcha is loaded later by script.js, only when the contact form is near) -->
-  <script src="script.js?v=202611091600" defer></script>
+  <script src="script.js?v=202611091700" defer></script>
 </body>
 </html>
