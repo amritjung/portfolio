@@ -363,22 +363,35 @@ body::before {
   color: var(--muted);
 }
 
-/* Green "available" dot with a pulse */
+/* Green "available" dot with a pulse.
+   The ring is a separate layer that only scales and fades, which the
+   browser can animate on the GPU without repainting the page. */
 .dot {
+  position: relative;
   width: 9px;
   height: 9px;
   border-radius: 50%;
   background: #22c55e;
-  box-shadow: 0 0 0 0 rgba(34, 197, 94, .6);
-  animation: pulse 2s infinite;
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: pulse 2s ease-out infinite;
 }
 
 @keyframes pulse {
-  70% {
-    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  0% {
+    opacity: .6;
+    transform: scale(1);
   }
+  70%,
   100% {
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    opacity: 0;
+    transform: scale(3.2);
   }
 }
 
@@ -1460,7 +1473,7 @@ main:focus {
 /* Animations paused with the ❚❚ button (or reduced-motion setting) */
 :root[data-motion="paused"] .marquee-track,
 :root[data-motion="paused"] .hero-badge svg,
-:root[data-motion="paused"] .dot {
+:root[data-motion="paused"] .dot::after {
   animation-play-state: paused;
 }
 
