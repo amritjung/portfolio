@@ -2289,9 +2289,70 @@ main:focus {
   font-size: .72rem;
 }
 
-/* Music / travel / philosophy cards */
+/* Music: genre pills and bands grouped by style */
+.genre-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+  list-style: none;
+}
+
+.genre-chips li {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: .78rem;
+  text-transform: uppercase;
+}
+
+.band-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.band-group {
+  padding: 22px;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.band-group h3 {
+  margin-bottom: 14px;
+  font-family: var(--display);
+  font-size: 1.15rem;
+}
+
+.band-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.band-chips li {
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--bg-2);
+  font-size: .85rem;
+  transition: background .2s, color .2s;
+}
+
+.band-chips li:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* Travel / philosophy cards */
 .interest-cards {
   grid-template-columns: repeat(3, 1fr);
+}
+
+.interest-cards-2 {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .interest-icon {
@@ -2358,8 +2419,13 @@ main:focus {
 
 /* --- Case pages on smaller screens ----------------------------- */
 @media (max-width: 1000px) {
-  .interest-cards {
+  .interest-cards,
+  .interest-cards-2 {
     grid-template-columns: 1fr;
+  }
+
+  .band-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .case-meta,
@@ -2389,6 +2455,10 @@ main:focus {
 }
 
 @media (max-width: 720px) {
+  .band-groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .beyond-teaser {
     grid-template-columns: minmax(0, 1fr);
   }
