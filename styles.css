@@ -2346,6 +2346,16 @@ main:focus {
   color: var(--on-accent);
 }
 
+/* Countries list inside the Travel card */
+.country-title {
+  margin: 18px 0 10px;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 /* Music shuffle player */
 .shuffle {
   margin-bottom: 32px;
