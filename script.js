@@ -24,6 +24,7 @@
  *  12. Contact email link
  *  13. Contact form
  *  13b. Load hCaptcha only when needed
+ *  13b. Photo carousel (Beyond the code page)
  *  13c. Music shuffle player (Beyond the code page)
  *  14. Footer year
  */
@@ -696,6 +697,50 @@ if (form) {
 
   captchaObserver.observe($("#contact"));
   form.addEventListener("focusin", loadCaptcha, { once: true });
+}
+
+
+/* ---------------------------------------------------------------
+ * 13b. Photo carousel (Beyond the code page)
+ * The photos sit in a horizontal scroll-snap strip, so swiping works
+ * on its own. This adds arrows, dots, a counter and arrow keys.
+ * ------------------------------------------------------------- */
+const carouselTrack = $("#carouselTrack");
+
+if (carouselTrack) {
+  const slides = [...carouselTrack.querySelectorAll(".slide")];
+  const dots = [...document.querySelectorAll(".carousel-dot")];
+  const counter = $("#carouselCount");
+  let current = 0;
+
+  const goTo = (index) => {
+    // Wrap around at either end
+    const next = (index + slides.length) % slides.length;
+    carouselTrack.scrollTo({ left: next * carouselTrack.clientWidth });
+  };
+
+  // Work out which slide is showing whenever the strip scrolls
+  const update = () => {
+    const index = Math.round(carouselTrack.scrollLeft / carouselTrack.clientWidth);
+    if (index === current || !slides[index]) return;
+    current = index;
+    counter.textContent = `${index + 1} / ${slides.length}`;
+    dots.forEach((dot, i) => {
+      if (i === index) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+    });
+  };
+
+  carouselTrack.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
+
+  $("#carouselPrev").addEventListener("click", () => goTo(current - 1));
+  $("#carouselNext").addEventListener("click", () => goTo(current + 1));
+  dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
+
+  carouselTrack.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") { event.preventDefault(); goTo(current + 1); }
+    if (event.key === "ArrowLeft") { event.preventDefault(); goTo(current - 1); }
+  });
 }
 
 
