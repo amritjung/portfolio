@@ -2379,7 +2379,7 @@ main:focus {
 }
 
 /* Every photo sits in the same frame; tall photos are shown whole */
-.slide a {
+.slide-frame {
   display: block;
   aspect-ratio: 4 / 3;
   width: 100%;
@@ -2392,6 +2392,12 @@ main:focus {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  /* Discourage saving: no drag, no long-press menu, no right-click on the image itself */
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
 }
 
 .slide figcaption {
@@ -2455,7 +2461,7 @@ main:focus {
 
 @media (max-width: 640px) {
   /* Square frame on phones: landscape photos fill it, tall ones show whole */
-  .slide a {
+  .slide-frame {
     aspect-ratio: 1 / 1;
   }
 

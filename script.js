@@ -737,6 +737,10 @@ if (carouselTrack) {
   $("#carouselNext").addEventListener("click", () => goTo(current + 1));
   dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
 
+  // No right-click / long-press menu on the photos
+  carouselTrack.addEventListener("contextmenu", (event) => event.preventDefault());
+  carouselTrack.addEventListener("dragstart", (event) => event.preventDefault());
+
   carouselTrack.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight") { event.preventDefault(); goTo(current + 1); }
     if (event.key === "ArrowLeft") { event.preventDefault(); goTo(current - 1); }
