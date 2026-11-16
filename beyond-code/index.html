@@ -32,7 +32,7 @@
 
   <link rel="preload" href="/assets/fonts/syne-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/styles.css?v=202611161500" />
+  <link rel="stylesheet" href="/styles.css?v=202611161600" />
 </head>
 
 <body class="case-page beyond-page">
@@ -194,14 +194,25 @@
         <li>Country</li>
       </ul>
 
+      <!-- Concerts I've been to — styled like tickets -->
+      <div class="seen-live">
+        <h3 class="seen-live-title mono">Seen live</h3>
+        <ul class="tickets">
+          <li class="ticket"><span class="mono">Admit one</span><strong>AC/DC</strong></li>
+          <li class="ticket"><span class="mono">Admit one</span><strong>Iron Maiden</strong></li>
+          <li class="ticket"><span class="mono">Admit one</span><strong>Metallica</strong></li>
+          <li class="ticket"><span class="mono">Admit one</span><strong>Slash</strong></li>
+        </ul>
+      </div>
+
       <div class="band-groups">
         <article class="band-group">
           <h3>Heavy metal &amp; thrash</h3>
           <ul class="band-chips">
             <li>Black Sabbath</li>
-            <li>Iron Maiden</li>
+            <li class="is-live">Iron Maiden<span class="sr-only"> (seen live)</span></li>
             <li>Motörhead</li>
-            <li>Metallica</li>
+            <li class="is-live">Metallica<span class="sr-only"> (seen live)</span></li>
             <li>Megadeth</li>
             <li>Anthrax</li>
             <li>Pantera</li>
@@ -228,7 +239,7 @@
           <ul class="band-chips">
             <li>Led Zeppelin</li>
             <li>Pink Floyd</li>
-            <li>AC/DC</li>
+            <li class="is-live">AC/DC<span class="sr-only"> (seen live)</span></li>
             <li>Rose Tattoo</li>
             <li>The Rolling Stones</li>
             <li>Aerosmith</li>
@@ -277,7 +288,7 @@
         </article>
       </div>
 
-      <p class="case-small">…and many more. 50 favourites listed here, and counting.</p>
+      <p class="case-small">…and many more. 50 favourites listed here, and counting. <span class="live-key" aria-hidden="true"></span> = seen live.</p>
     </section>
 
 
@@ -323,6 +334,6 @@
     <a href="#main">Back to top ↑</a>
   </footer>
 
-  <script src="/script.js?v=202611161500" defer></script>
+  <script src="/script.js?v=202611161600" defer></script>
 </body>
 </html>
