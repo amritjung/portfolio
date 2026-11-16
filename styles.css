@@ -617,7 +617,7 @@ body::before {
   margin-bottom: 56px;
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(2.6rem, 8vw, 6.5rem);
+  font-size: clamp(2rem, 8vw, 6.5rem);
   line-height: .95;
   letter-spacing: -.02em;
   text-transform: uppercase;
@@ -705,7 +705,7 @@ body::before {
 /* Card: artwork on one side, text on the other */
 .project {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* minmax(0) lets columns shrink on tiny screens */
   overflow: hidden;
   border: 1.5px solid var(--line);
   border-radius: var(--radius);
@@ -833,7 +833,7 @@ body::before {
   color: #3b2611;
   font-family: var(--display);
   font-weight: 800;
-  font-size: 1.9rem;
+  font-size: clamp(1.4rem, 6vw, 1.9rem);
   letter-spacing: .05em;
   box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
   transform: rotate(-6deg);
@@ -1311,7 +1311,7 @@ body::before {
   margin-bottom: 64px;
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(2.6rem, 9vw, 8rem);
+  font-size: clamp(1.7rem, 8.6vw, 8rem); /* low minimum so "SOMETHING" fits on phones */
   line-height: .92;
   letter-spacing: -.03em;
   text-transform: uppercase;
@@ -1626,7 +1626,7 @@ main:focus {
 
   /* Project cards: artwork always on top */
   .project {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .project-visual,
@@ -1724,7 +1724,7 @@ main:focus {
 .error-code {
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(7rem, 30vw, 20rem);
+  font-size: clamp(5rem, 30vw, 20rem);
   line-height: .85;
   letter-spacing: -.04em;
 }
@@ -1780,7 +1780,7 @@ main:focus {
 .case-title {
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(2.6rem, 9vw, 7.5rem);
+  font-size: clamp(1.9rem, 9vw, 7.5rem); /* small minimum so long words fit on narrow phones */
   line-height: .92;
   letter-spacing: -.03em;
   text-transform: uppercase;
@@ -1995,6 +1995,29 @@ main:focus {
 .flow-step p:last-child {
   font-size: .92rem;
   color: var(--muted);
+}
+
+/* Five-step version (one row on desktop) */
+.flow-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* Short intro paragraph above a diagram, and a small note below one */
+.case-intro {
+  margin-bottom: 24px;
+}
+
+.case-small {
+  max-width: 760px;
+  margin-top: 20px;
+  font-size: .92rem;
+  color: var(--muted);
+}
+
+/* Space between a set of cards and a diagram / code block below it */
+.case-cards + .arch,
+.case-cards + .case-code {
+  margin-top: 24px;
 }
 
 /* --- Architecture block diagram ------------------------------- */

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Lendly — Case Study · Amrit Thapa</title>
+  <meta name="description" content="Lendly: a personal-loans WordPress site built the professional way — Bedrock, DDEV and Git, a hand-coded theme and a custom plugin with a repayment calculator, multi-step application and encrypted applicant data." />
+  <meta name="author" content="Amrit Thapa" />
+  <link rel="canonical" href="https://amritthapa.com/work/lendly/" />
+
+  <!-- Same security policy as the other case-study pages -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src 'self';
+    style-src 'self';
+    font-src 'self';
+    img-src 'self' data:;
+    manifest-src 'self';
+    form-action 'none';
+    base-uri 'none';
+    object-src 'none'
+  " />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Icons -->
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#141210" />
+
+  <!-- Structured data: an article about a piece of software I built -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Lendly — Case Study",
+      "description": "A personal-loans WordPress practice build with Bedrock, DDEV, a custom theme and a custom loans plugin.",
+      "url": "https://amritthapa.com/work/lendly/",
+      "datePublished": "2026-11-09T15:00:00+10:00",
+      "dateModified": "2026-11-09T15:00:00+10:00",
+      "author": {
+        "@type": "Person",
+        "name": "Amrit Thapa",
+        "url": "https://amritthapa.com/"
+      },
+      "about": {
+        "@type": "SoftwareSourceCode",
+        "name": "Lendly",
+        "codeRepository": "https://github.com/amritjung/lendly",
+        "programmingLanguage": "PHP"
+      }
+    }
+  </script>
+
+  <link rel="preload" href="/assets/fonts/syne-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/styles.css?v=202611161000" />
+</head>
+
+<body class="case-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="cursor" aria-hidden="true"></div>
+
+
+  <!-- ============================================================
+       NAVIGATION (case-study version)
+       ============================================================ -->
+  <header class="nav">
+    <a href="/" class="logo">amrit<span>.</span></a>
+
+    <nav class="case-nav" aria-label="Case study navigation">
+      <a href="/#work">← All work</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+
+    <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme">◐</button>
+  </header>
+
+
+  <main id="main" tabindex="-1">
+
+    <!-- ============================================================
+         INTRO
+         ============================================================ -->
+    <section class="case-hero">
+      <p class="eyebrow mono">Case study · Practice build · WordPress</p>
+
+      <h1 class="case-title">
+        Lendly<br />
+        <span class="outline">personal</span> <span class="accent">loans</span>
+      </h1>
+
+      <p class="case-lead">
+        A personal-loans website built the way a WordPress agency would — <strong>Bedrock, DDEV
+        and Git</strong>, a hand-coded theme, and a custom plugin for the repayment calculator,
+        a multi-step application and an <strong>encrypted</strong> admin review area.
+      </p>
+
+      <div class="hero-cta case-actions">
+        <a href="https://github.com/amritjung/lendly" class="btn btn-primary magnetic" target="_blank" rel="noopener noreferrer">View the code on GitHub <span>↗</span></a>
+      </div>
+
+      <!-- Quick facts -->
+      <dl class="case-meta">
+        <div>
+          <dt class="mono">Role</dt>
+          <dd>Solo — setup, theme and plugin</dd>
+        </div>
+        <div>
+          <dt class="mono">Type</dt>
+          <dd>Practice project — not a real lender</dd>
+        </div>
+        <div>
+          <dt class="mono">Built</dt>
+          <dd>October 2026</dd>
+        </div>
+        <div>
+          <dt class="mono">Stack</dt>
+          <dd>WordPress, Bedrock, DDEV (Docker), PHP 8.4, MariaDB, WP-CLI, REST API, libsodium, vanilla JS</dd>
+        </div>
+      </dl>
+    </section>
+
+
+    <!-- ============================================================
+         KEY NUMBERS
+         ============================================================ -->
+    <section class="case-section">
+      <ul class="case-stats">
+        <li><strong>5</strong><span>step loan application</span></li>
+        <li><strong>3</strong><span>repayment frequencies</span></li>
+        <li><strong>6</strong><span>application statuses</span></li>
+        <li><strong>0</strong><span>page builders used</span></li>
+      </ul>
+    </section>
+
+
+    <!-- ============================================================
+         01 · THE GOAL
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">01 / The goal</div>
+      <div class="case-copy">
+        <h2>WordPress, the professional way</h2>
+        <p>
+          I wanted to practise WordPress the way agencies and in-house teams run it — not a
+          one-click install with a page builder, but a version-controlled project with its
+          dependencies managed by Composer and a reproducible local environment.
+        </p>
+        <p>
+          The subject is an Australian-style personal-loans site, because it needs more than
+          pages: a live repayment calculator, an application form that collects sensitive
+          personal details, and a secure place for staff to review them.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         02 · PROJECT SETUP
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">02 / Project setup</div>
+      <h2 class="case-h2">The “company way” foundation</h2>
+
+      <div class="case-cards">
+        <article class="case-card">
+          <h3>Bedrock</h3>
+          <p>WordPress core and plugins installed through Composer, with config kept in environment files instead of a hand-edited wp-config.php.</p>
+        </article>
+        <article class="case-card">
+          <h3>DDEV</h3>
+          <p>A Docker-based local environment — PHP 8.4, nginx and MariaDB — so the setup is the same on any machine.</p>
+        </article>
+        <article class="case-card">
+          <h3>Git</h3>
+          <p>Only my own code and config are committed; WordPress core, vendor packages and uploads stay out of the repo.</p>
+        </article>
+        <article class="case-card">
+          <h3>WP-CLI seed script</h3>
+          <p>One command creates the pages, loan product pages, menus and reading settings on a fresh install.</p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         03 · THE THEME
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">03 / The theme</div>
+      <div class="case-copy">
+        <h2>Hand-coded, no page builder</h2>
+        <ul class="case-list">
+          <li>A custom PHP theme with a front page built from reusable template parts: loan cards, “how it works”, features, FAQ and a call to action.</li>
+          <li>A “Loan product” page template used for Personal Loans, Car Loans and Debt Consolidation.</li>
+          <li>Brand colours, contact details, licence numbers, hero text and the footer disclaimer are all editable in the WordPress Customizer — no code changes needed.</li>
+          <li>Theme JavaScript loaded with <code>defer</code> so it never blocks the page from rendering.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         04 · CALCULATOR & APPLICATION
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">04 / Calculator &amp; application</div>
+      <h2 class="case-h2">From “how much?” to “apply now”</h2>
+
+      <div class="case-copy case-intro">
+        <p>
+          Both features live in a custom plugin and drop onto any page with a shortcode —
+          <code>[lendly_calculator]</code> and <code>[lendly_apply]</code>. Every rate, fee,
+          loan amount and term comes from a settings screen, so nothing is hard-coded in the theme.
+        </p>
+      </div>
+
+      <ul class="flow-key mono" aria-label="Application steps">
+        <li><span class="chip chip-customer"></span>Applicant fills in a step</li>
+        <li><span class="chip chip-gateway"></span>Final review screen</li>
+      </ul>
+
+      <ol class="flow flow-5">
+        <li class="flow-step">
+          <span class="flow-num">1</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>The loan</p>
+            <h3>Amount, term &amp; purpose</h3>
+            <p>Limited to the minimum and maximum set in the plugin settings.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">2</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>About you</p>
+            <h3>Personal details</h3>
+            <p>Date of birth must show the applicant is 18 or over; mobile must be a valid Australian number.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">3</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>Where you live</p>
+            <h3>Address</h3>
+            <p>Residential status and a four-digit postcode.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">4</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>Money</p>
+            <h3>Income &amp; expenses</h3>
+            <p>“So we only lend what you can comfortably repay.”</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">5</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-gateway"></span>Review</p>
+            <h3>Check &amp; submit</h3>
+            <p>A summary of every answer before it's sent as JSON to the plugin's REST endpoint.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="case-small">
+        Each step is validated before moving on, with errors shown next to the field and focus
+        moved to the first input of the new step. The calculator works out amortised repayments
+        weekly, fortnightly or monthly, with fees included, and shows the comparison rate.
+      </p>
+    </section>
+
+
+    <!-- ============================================================
+         05 · PROTECTING APPLICANT DATA
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">05 / Protecting applicant data</div>
+      <h2 class="case-h2">What happens when someone presses Submit</h2>
+
+      <div class="case-cards">
+        <article class="case-card">
+          <h3>Request checks</h3>
+          <p>A WordPress nonce must match, a hidden honeypot field catches bots, and each connection is limited to 5 applications an hour.</p>
+        </article>
+        <article class="case-card">
+          <h3>Server-side validation</h3>
+          <p>Every field is checked again on the server, never trusting the browser — amounts, ages, phone numbers, postcodes and allowed options.</p>
+        </article>
+        <article class="case-card">
+          <h3>Encrypted at rest</h3>
+          <p>Personal details are encrypted with libsodium before they touch the database. Only the amount, term, purpose and status are stored in plain columns.</p>
+        </article>
+        <article class="case-card">
+          <h3>No raw IP addresses</h3>
+          <p>The rate limit uses a keyed hash of the IP, so the real address is never stored. A consent timestamp is saved with each application.</p>
+        </article>
+      </div>
+
+      <!-- Database split: what's readable vs. what's encrypted -->
+      <div class="arch" role="img" aria-label="Diagram: the application is split into plain columns (reference, status, amount, term, purpose, timestamps, hashed IP) and an encrypted payload holding name, contact details, date of birth, address, income and expenses. Only staff with the loans capability can decrypt it in the admin area.">
+        <div class="arch-side">
+          <span class="chip chip-customer"></span>
+          <strong>Application</strong>
+          <small class="mono">JSON via REST API</small>
+        </div>
+
+        <div class="arch-arrow" aria-hidden="true">⇄</div>
+
+        <div class="arch-core">
+          <p class="arch-title mono"><span class="chip chip-gateway"></span>wp_lendly_applications</p>
+          <ul>
+            <li>Plain: reference, status</li>
+            <li>Plain: amount, term, purpose</li>
+            <li>Plain: timestamps</li>
+            <li>Hashed: IP address</li>
+            <li class="arch-wide">Encrypted payload: name, contact, date of birth, address, income &amp; expenses</li>
+          </ul>
+        </div>
+
+        <div class="arch-arrow" aria-hidden="true">⇄</div>
+
+        <div class="arch-side">
+          <span class="chip chip-bank"></span>
+          <strong>Loan staff</strong>
+          <small class="mono">custom capability to decrypt &amp; review</small>
+        </div>
+      </div>
+
+      <!-- Short real excerpt from the repo -->
+      <figure class="case-code">
+        <figcaption class="mono">web/app/plugins/lendly-loans/includes/class-lendly-crypto.php (excerpt)</figcaption>
+<pre tabindex="0" aria-label="Code excerpt: encrypting applicant data with libsodium"><code>public static function encrypt( string $plaintext ): string {
+    $nonce  = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
+    $cipher = sodium_crypto_secretbox( $plaintext, $nonce, self::key() );
+    return 'v1:' . base64_encode( $nonce . $cipher );
+}</code></pre>
+      </figure>
+    </section>
+
+
+    <!-- ============================================================
+         06 · ADMIN REVIEW AREA
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">06 / Admin review</div>
+      <div class="case-copy">
+        <h2>A proper back office inside WordPress</h2>
+        <ul class="case-list">
+          <li>A “Loans” menu with a sortable applications list and status filters, built on WordPress's own list-table class.</li>
+          <li>Access controlled by a custom <code>lendly_manage_applications</code> capability, not just “is an admin”.</li>
+          <li>Each application shows a quick serviceability snapshot: income minus expenses minus the new repayment, flagged red if it goes negative.</li>
+          <li>Six statuses — new, reviewing, more info, approved, declined, withdrawn — with review notes. Every action is nonce-protected, and only full admins can delete.</li>
+          <li>Staff get an email for each new application that contains only the reference, amount and term — never personal details — and the applicant gets a confirmation email.</li>
+          <li>A <code>lendly_application_created</code> hook is ready for a CRM or credit-check integration.</li>
+          <li>A warning appears in the dashboard until a dedicated encryption key is set in the config.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         07 · WHAT I PRACTISED
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">07 / What I practised</div>
+      <div class="case-copy">
+        <h2>Skills this build covers</h2>
+        <ul class="case-list">
+          <li>Running WordPress as a Composer-managed project with environment-based config.</li>
+          <li>Writing a theme and a plugin from scratch, following WordPress coding patterns.</li>
+          <li>Building a JSON REST endpoint with nonces, rate limiting and server-side validation.</li>
+          <li>Handling sensitive personal data responsibly: encryption, hashing and least-privilege access.</li>
+          <li>Cleaning up properly — uninstalling removes settings and capabilities, and only drops the data if explicitly told to.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CALL TO ACTION
+         ============================================================ -->
+    <section class="case-cta">
+      <h2>Need someone who can do WordPress <span class="accent">properly</span>?</h2>
+      <div class="hero-cta">
+        <a href="https://github.com/amritjung/lendly" class="btn btn-primary magnetic" target="_blank" rel="noopener noreferrer">View on GitHub <span>↗</span></a>
+        <a href="/#contact" class="btn btn-ghost magnetic">Get in touch</a>
+        <a href="/work/migration-platform/" class="btn btn-ghost magnetic">Next: Pathwise →</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer mono">
+    <span>© <span id="year"></span> Amrit Thapa</span>
+    <span>Made in Brisbane ✺</span>
+    <a href="#main">Back to top ↑</a>
+  </footer>
+
+  <script src="/script.js?v=202611161000" defer></script>
+</body>
+</html>

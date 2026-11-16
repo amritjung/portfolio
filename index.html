@@ -101,7 +101,7 @@
   <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Bump ?v= whenever styles.css changes so browsers don't use an old cached copy -->
-  <link rel="stylesheet" href="styles.css?v=202611091700" />
+  <link rel="stylesheet" href="styles.css?v=202611161000" />
 </head>
 
 <body>
@@ -291,6 +291,7 @@
       <div class="filters mono" role="group" aria-label="Filter projects by type">
         <button class="filter active" type="button" data-filter="all" aria-pressed="true">All</button>
         <button class="filter" type="button" data-filter="laravel" aria-pressed="false">Laravel</button>
+        <button class="filter" type="button" data-filter="fullstack" aria-pressed="false">Full-stack</button>
         <button class="filter" type="button" data-filter="wordpress" aria-pressed="false">WordPress</button>
         <button class="filter" type="button" data-filter="frontend" aria-pressed="false">Front-end</button>
         <button class="filter" type="button" data-filter="design" aria-pressed="false">Design</button>
@@ -408,48 +409,59 @@
           </div>
 
           <div class="project-body">
-            <div class="project-meta mono"><span>04</span><span>WordPress · 2026</span></div>
+            <div class="project-meta mono"><span>04</span><span>WordPress · Practice build · 2026</span></div>
             <h3>Lendly</h3>
             <p>
-              A personal-loans marketing site built the "company way" — DDEV (Docker), Bedrock and
-              Git — with a hand-coded custom PHP theme and a custom plugin powering the loan
-              calculator and application flow. A practice build, not a real lender.
+              A personal-loans site built the "company way" — Bedrock, DDEV and Git — with a
+              hand-coded theme and a custom plugin: repayment calculator, 5-step application over
+              a REST endpoint, and encrypted applicant data in an admin review area.
+              A practice build, not a real lender.
             </p>
             <ul class="tags mono">
               <li>WordPress</li>
               <li>Bedrock</li>
               <li>DDEV</li>
-              <li>Custom theme</li>
               <li>Custom plugin</li>
+              <li>REST API</li>
+              <li>libsodium</li>
             </ul>
+            <div class="project-links">
+              <a href="/work/lendly/" class="project-link">Read the case study <span>→</span></a>
+              <a href="https://github.com/amritjung/lendly" class="project-link" target="_blank" rel="noopener noreferrer">Code on GitHub <span>↗</span></a>
+            </div>
           </div>
         </article>
 
-        <!-- Project 05: Australian Migration Platform -->
-        <article class="project reveal" data-cat="laravel">
-          <div class="project-visual v-migrate">
+        <!-- Project 05: Pathwise — Australian migration platform (case study, no public repo) -->
+        <article class="project reveal" data-cat="fullstack">
+          <div class="project-visual v-migrate" aria-hidden="true">
             <div class="path">
-              <div class="step done"><i>✓</i><span>Eligibility</span></div>
-              <div class="step done"><i>✓</i><span>Skills assessment</span></div>
-              <div class="step active"><i>3</i><span>Expression of interest</span></div>
-              <div class="step"><i>4</i><span>Visa lodged</span></div>
+              <div class="step done"><i>✓</i><span>Profile evaluated</span></div>
+              <div class="step done"><i>✓</i><span>Potential match · 190</span></div>
+              <div class="step active"><i>3</i><span>Agent referral</span></div>
+              <div class="step"><i>4</i><span>Consent to share</span></div>
             </div>
           </div>
 
           <div class="project-body">
-            <div class="project-meta mono"><span>05</span><span>Platform · In progress</span></div>
-            <h3>Australian Migration Platform</h3>
+            <div class="project-meta mono"><span>05</span><span>Platform · In development</span></div>
+            <h3>Pathwise — Migration Platform</h3>
             <p>
-              A platform to guide people through Australian visa pathways — eligibility checks,
-              step-by-step progress tracking and document checklists — designed with a clean service
-              architecture so agents and applicants share one source of truth.
+              A privacy-first platform that shows students and temporary visa holders which
+              Australian visa pathways they may match, lets them test what-if changes, and refers
+              real matches to MARN-verified migration agents with consent-based sharing.
             </p>
             <ul class="tags mono">
-              <li>Laravel</li>
-              <li>MySQL</li>
-              <li>REST API</li>
-              <li>System design</li>
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>PostgreSQL</li>
+              <li>Redis</li>
+              <li>Stripe</li>
+              <li>Privacy by design</li>
             </ul>
+            <div class="project-links">
+              <a href="/work/migration-platform/" class="project-link">Read the case study <span>→</span></a>
+            </div>
           </div>
         </article>
 
@@ -719,6 +731,6 @@
 
 
   <!-- Scripts (hCaptcha is loaded later by script.js, only when the contact form is near) -->
-  <script src="script.js?v=202611091700" defer></script>
+  <script src="script.js?v=202611161000" defer></script>
 </body>
 </html>

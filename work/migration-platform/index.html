@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Pathwise — Australian Migration Platform · Case Study · Amrit Thapa</title>
+  <meta name="description" content="Pathwise: a platform in development that helps students and temporary visa holders see which Australian visa pathways they may match, and connects them with registered migration agents — built privacy-first." />
+  <meta name="author" content="Amrit Thapa" />
+  <link rel="canonical" href="https://amritthapa.com/work/migration-platform/" />
+
+  <!-- Same security policy as the other case-study pages -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src 'self';
+    style-src 'self';
+    font-src 'self';
+    img-src 'self' data:;
+    manifest-src 'self';
+    form-action 'none';
+    base-uri 'none';
+    object-src 'none'
+  " />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Icons -->
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#141210" />
+
+  <!-- Structured data: an article about my work -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Pathwise — Australian Migration Platform · Case Study",
+      "description": "A privacy-first platform in development that matches applicants to Australian visa pathways and connects them with registered migration agents.",
+      "url": "https://amritthapa.com/work/migration-platform/",
+      "datePublished": "2026-11-16T10:00:00+10:00",
+      "dateModified": "2026-11-16T10:00:00+10:00",
+      "author": {
+        "@type": "Person",
+        "name": "Amrit Thapa",
+        "url": "https://amritthapa.com/"
+      }
+    }
+  </script>
+
+  <link rel="preload" href="/assets/fonts/syne-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/styles.css?v=202611161000" />
+</head>
+
+<body class="case-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="cursor" aria-hidden="true"></div>
+
+
+  <!-- ============================================================
+       NAVIGATION (case-study version)
+       ============================================================ -->
+  <header class="nav">
+    <a href="/" class="logo">amrit<span>.</span></a>
+
+    <nav class="case-nav" aria-label="Case study navigation">
+      <a href="/#work">← All work</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+
+    <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme">◐</button>
+  </header>
+
+
+  <main id="main" tabindex="-1">
+
+    <!-- ============================================================
+         INTRO
+         ============================================================ -->
+    <section class="case-hero">
+      <p class="eyebrow mono">Case study · Platform in development · Pathwise</p>
+
+      <h1 class="case-title">
+        Migration<br />
+        <span class="outline">pathway</span> <span class="accent">platform</span>
+      </h1>
+
+      <p class="case-lead">
+        A web platform that helps <strong>students and temporary visa holders</strong> see which
+        Australian visa pathways they may match, test “what if” changes, and connect with a
+        <strong>registered migration agent</strong> — designed privacy-first from day one.
+      </p>
+
+      <!-- Quick facts -->
+      <dl class="case-meta">
+        <div>
+          <dt class="mono">Role</dt>
+          <dd>Product design, architecture and development</dd>
+        </div>
+        <div>
+          <dt class="mono">Stage</dt>
+          <dd>In development — not launched, test data only</dd>
+        </div>
+        <div>
+          <dt class="mono">Timeline</dt>
+          <dd>2026 — ongoing</dd>
+        </div>
+        <div>
+          <dt class="mono">Stack</dt>
+          <dd>React, TypeScript, PostgreSQL, Redis, Stripe, Resend, Google sign-in, Anthropic API</dd>
+        </div>
+      </dl>
+    </section>
+
+
+    <!-- ============================================================
+         KEY NUMBERS
+         ============================================================ -->
+    <section class="case-section">
+      <ul class="case-stats">
+        <li><strong>3</strong><span>account types — applicants, agents, admins</span></li>
+        <li><strong>45</strong><span>about this many eligibility declarations modelled</span></li>
+        <li><strong>53</strong><span>about this many kinds of admin change audited</span></li>
+        <li><strong>2</strong><span>admins needed to publish a rule</span></li>
+      </ul>
+    </section>
+
+
+    <!-- ============================================================
+         01 · THE PROBLEM
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">01 / The problem</div>
+      <div class="case-copy">
+        <h2>Finding a pathway shouldn't start with guesswork</h2>
+        <p>
+          For students and temporary visa holders, working out whether they might qualify for
+          permanent residency means piecing together points tests, occupation lists and each
+          state's own nomination criteria — often before they can afford an agent.
+        </p>
+        <p>
+          Pathwise turns an applicant's profile into a clear picture of which pathways they may
+          match and why. It gives general information only — not migration advice — and points
+          people to a registered migration agent before they apply.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         02 · WHO IT'S FOR
+         Block diagram: applicants and agents on either side,
+         the platform's main parts in the middle.
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">02 / How it fits together</div>
+      <h2 class="case-h2">Three kinds of user, one platform</h2>
+
+      <div class="arch" role="img" aria-label="Diagram: applicants and registered migration agents both use the Pathwise platform. Inside it are profile and points evaluation, pathway matching, state comparison, what-if scenarios, an AI question assistant with sources, referrals with consent-based sharing, and an admin area for rules and sources with an audit log.">
+        <div class="arch-side">
+          <span class="chip chip-customer"></span>
+          <strong>Applicants</strong>
+          <small class="mono">students &amp; temporary visa holders</small>
+        </div>
+
+        <div class="arch-arrow" aria-hidden="true">⇄</div>
+
+        <div class="arch-core">
+          <p class="arch-title mono"><span class="chip chip-gateway"></span>Pathwise</p>
+          <ul>
+            <li>Profile &amp; points evaluation</li>
+            <li>Visa pathway matching</li>
+            <li>Compare states &amp; territories</li>
+            <li>What-if scenarios</li>
+            <li>AI Q&amp;A with sources</li>
+            <li>Referrals &amp; consent</li>
+            <li class="arch-wide">Admin: rules, occupation data &amp; government sources · audit log</li>
+          </ul>
+        </div>
+
+        <div class="arch-arrow" aria-hidden="true">⇄</div>
+
+        <div class="arch-side">
+          <span class="chip chip-bank"></span>
+          <strong>Migration agents</strong>
+          <small class="mono">MARN-verified</small>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         03 · FOR APPLICANTS
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">03 / For applicants</div>
+      <h2 class="case-h2">From profile to pathway</h2>
+
+      <div class="case-cards">
+        <article class="case-card">
+          <h3>Pathway matching</h3>
+          <p>Each pathway is checked criterion by criterion — “7 of 9 criteria appear satisfied” — with a points total and an overall “potential match” or “partial match” result.</p>
+        </article>
+        <article class="case-card">
+          <h3>Compare states</h3>
+          <p>The same profile is evaluated against each state or territory's own published nomination criteria, sorted by closest match.</p>
+        </article>
+        <article class="case-card">
+          <h3>What-if scenarios</h3>
+          <p>Try changes such as a better English score and see the effect. Scenarios store only the differences from the real profile.</p>
+        </article>
+        <article class="case-card">
+          <h3>Ask with sources</h3>
+          <p>An AI assistant answers pathway questions with references to the government sources behind each answer.</p>
+        </article>
+      </div>
+
+      <p class="case-small">
+        Every profile field is optional and is only collected when a rule or points calculation
+        actually uses it. Results are saved over time so applicants can see how their position changes.
+      </p>
+    </section>
+
+
+    <!-- ============================================================
+         04 · AGENT REFERRALS
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">04 / Agent referrals</div>
+      <h2 class="case-h2">Warm referrals, shared on the applicant's terms</h2>
+
+      <ul class="flow-key mono" aria-label="Who is involved">
+        <li><span class="chip chip-customer"></span>Applicant</li>
+        <li><span class="chip chip-gateway"></span>Pathwise</li>
+        <li><span class="chip chip-bank"></span>Migration agent</li>
+      </ul>
+
+      <ol class="flow">
+        <li class="flow-step">
+          <span class="flow-num">1</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-gateway"></span>Pathwise</p>
+            <h3>Only real matches</h3>
+            <p>A referral is only possible once an evaluation comes back a potential or partial match.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">2</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>Applicant → <span class="chip chip-bank"></span>Agent</p>
+            <h3>Request sent</h3>
+            <p>The agent receives the request with the pathway and assessment already attached.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">3</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-bank"></span>Agent</p>
+            <h3>Accept or decline</h3>
+            <p>Accepted requests become ongoing cases, with messaging between the agent and applicant.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">4</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-bank"></span>Agent → <span class="chip chip-customer"></span>Applicant</p>
+            <h3>Ask for more detail</h3>
+            <p>Agents request further information one category at a time, such as education history.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">5</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-customer"></span>Applicant</p>
+            <h3>Explicit consent</h3>
+            <p>The applicant chooses, section by section, what to share. Nothing else is visible to the agent.</p>
+          </div>
+        </li>
+        <li class="flow-step">
+          <span class="flow-num">6</span>
+          <div>
+            <p class="flow-actors mono"><span class="chip chip-bank"></span>Agent</p>
+            <h3>Close the case</h3>
+            <p>Cases are marked as placed off-platform or closed. Agents pay a flat monthly subscription — no lead fees.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="case-small">
+        Agents register with their MARN, and the admin team checks it against the official OMARA
+        register by hand before the account goes live, with regular re-checks after that.
+      </p>
+    </section>
+
+
+    <!-- ============================================================
+         05 · ADMIN & RULES
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">05 / Admin &amp; rules</div>
+      <div class="case-copy">
+        <h2>Rules you can trust, changes you can trace</h2>
+        <ul class="case-list">
+          <li>Admins manage the eligibility rules, occupation data and government sources that every result is built from.</li>
+          <li>Changes follow a four-eyes workflow: one admin drafts, a second admin verifies, then it's published.</li>
+          <li>Every admin change — around 53 kinds — is written to an audit log with the values before and after, plus the admin's device and session.</li>
+          <li>Admins can see account details but cannot open the contents of an applicant's profile.</li>
+          <li>Terms of Use, Privacy Policy and Agent Terms are versioned; when a new version is published, users must accept it before they can carry on.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         06 · SECURITY & PRIVACY
+         ============================================================ -->
+    <section class="case-section">
+      <div class="section-label mono">06 / Security &amp; privacy</div>
+      <h2 class="case-h2">Treated like financial or health data</h2>
+
+      <div class="case-cards">
+        <article class="case-card">
+          <h3>Accounts</h3>
+          <p>Passwords hashed with argon2; session tokens stored hashed and rotated on every use; rate limits on sign-in, registration and resets.</p>
+        </article>
+        <article class="case-card">
+          <h3>Access checks</h3>
+          <p>Every profile read and write is checked on the server. Asking for someone else's record returns “not found”, so it doesn't even confirm it exists.</p>
+        </article>
+        <article class="case-card">
+          <h3>Admin protection</h3>
+          <p>Admin sign-in needs an authenticator app plus single-use recovery codes, with admin accounts kept in their own table.</p>
+        </article>
+        <article class="case-card">
+          <h3>Clean logs</h3>
+          <p>An automatic filter stops passwords, tokens, reset links, two-factor secrets and profile contents ever reaching the logs.</p>
+        </article>
+      </div>
+
+      <p class="case-small">
+        Card details are entered on Stripe's own page, Google sign-in asks only for an email
+        address, and the AI assistant is never sent raw profile fields. Applicants can export
+        their own data. Before any real users join, I wrote a data-retention and privacy brief
+        for a privacy lawyer, so retention and deletion rules are set by legal advice rather
+        than guesswork.
+      </p>
+    </section>
+
+
+    <!-- ============================================================
+         07 · WHERE IT'S AT
+         ============================================================ -->
+    <section class="case-section case-split">
+      <div class="section-label mono">07 / Where it's at</div>
+      <div class="case-copy">
+        <h2>Built, tested, and heading for legal review</h2>
+        <ul class="case-list">
+          <li>The applicant, agent and admin areas are built and running with test data.</li>
+          <li>Next: privacy-lawyer review of retention and the legal documents, choosing hosting, then a small group of real testers.</li>
+        </ul>
+
+        <p class="case-note mono">
+          The platform hasn't launched. Details are kept high-level, and no real user data is shown.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CALL TO ACTION
+         ============================================================ -->
+    <section class="case-cta">
+      <h2>Building something that handles <span class="accent">sensitive data</span>? Let's talk.</h2>
+      <div class="hero-cta">
+        <a href="/#contact" class="btn btn-primary magnetic">Get in touch <span>→</span></a>
+        <a href="/assets/Amrit-Thapa-CV.pdf" class="btn btn-ghost magnetic" download>Download CV <span>↓</span></a>
+        <a href="/work/lendly/" class="btn btn-ghost magnetic">← Lendly</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer mono">
+    <span>© <span id="year"></span> Amrit Thapa</span>
+    <span>Made in Brisbane ✺</span>
+    <a href="#main">Back to top ↑</a>
+  </footer>
+
+  <script src="/script.js?v=202611161000" defer></script>
+</body>
+</html>
