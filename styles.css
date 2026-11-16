@@ -1089,6 +1089,39 @@ body::before {
   transform: translateX(-8px);
 }
 
+/* --- Tharu Garden: the two real menu pages, fanned out ---------- */
+.v-menu-photos {
+  position: relative;
+  background: #2f3e2c;
+}
+
+.v-menu-photos img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(42%, 220px);
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, .45);
+  transition: transform .5s var(--ease-out);
+}
+
+.v-menu-photos img:first-child {
+  transform: translate(-88%, -50%) rotate(-6deg);
+}
+
+.v-menu-photos img:last-child {
+  transform: translate(-12%, -48%) rotate(5deg);
+}
+
+.project:hover .v-menu-photos img:first-child {
+  transform: translate(-94%, -52%) rotate(-9deg);
+}
+
+.project:hover .v-menu-photos img:last-child {
+  transform: translate(-6%, -50%) rotate(8deg);
+}
+
 /* --- Tharu Garden: printed menu card -------------------------- */
 .v-menu {
   background: #2f3e2c;
@@ -2152,6 +2185,38 @@ main:focus {
   font-size: .85em;
 }
 
+/* --- Menu gallery (Tharu Garden): pages shown side by side ----- */
+.menu-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.menu-page a {
+  display: block;
+  overflow: hidden;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: #f3efe6;
+  transition: transform .35s var(--ease-out), box-shadow .35s;
+}
+
+.menu-page a:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.menu-page img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.menu-page figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
 /* --- Closing call to action ------------------------------------ */
 .case-cta {
   margin-top: 40px;
@@ -2197,6 +2262,10 @@ main:focus {
 }
 
 @media (max-width: 720px) {
+  .menu-gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .case-split {
     grid-template-columns: 1fr;
     gap: 4px;
