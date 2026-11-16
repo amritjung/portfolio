@@ -2356,6 +2356,13 @@ main:focus {
   color: var(--muted);
 }
 
+/* Links inside the interest cards */
+.interest-cards .case-card a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* A short principle in the Spiritual philosophy card */
 .life-idea {
   margin: 0;
