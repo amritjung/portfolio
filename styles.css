@@ -2356,6 +2356,14 @@ main:focus {
   color: var(--muted);
 }
 
+/* A short principle in the Spiritual philosophy card */
+.life-idea {
+  margin: 0;
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+  font-style: italic;
+}
+
 /* Music shuffle player */
 .shuffle {
   margin-bottom: 32px;
