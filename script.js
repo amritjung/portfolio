@@ -628,7 +628,8 @@ if (form) {
     }
 
     // --- Send ------------------------------------------------------
-    const originalButtonHTML = submitButton.innerHTML;
+    // Keep a copy of the button's contents as DOM nodes (no HTML strings)
+    const originalButtonContent = [...submitButton.childNodes].map((node) => node.cloneNode(true));
     submitButton.disabled = true;
     submitButton.textContent = "Sending…";
     showStatus("");
@@ -660,7 +661,7 @@ if (form) {
       }
 
       submitButton.disabled = false;
-      submitButton.innerHTML = originalButtonHTML;
+      submitButton.replaceChildren(...originalButtonContent);
     }
   });
 }
