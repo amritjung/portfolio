@@ -2217,6 +2217,129 @@ main:focus {
   color: var(--muted);
 }
 
+/* --- "Beyond the code" page ------------------------------------ */
+
+/* Big landscape photo under the intro */
+.photo-feature a {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--line);
+}
+
+.photo-feature img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform .8s var(--ease-out);
+}
+
+.photo-feature a:hover img {
+  transform: scale(1.03);
+}
+
+.photo-feature figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+/* Masonry-style gallery using CSS columns (no JavaScript needed) */
+.photo-grid {
+  columns: 3 260px;
+  column-gap: 20px;
+}
+
+.photo {
+  margin: 0 0 20px;
+  break-inside: avoid;
+}
+
+.photo a {
+  display: block;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1.5px solid var(--line);
+  background: var(--bg-2);
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform .6s var(--ease-out);
+}
+
+.photo a:hover img {
+  transform: scale(1.04);
+}
+
+.photo figcaption {
+  display: grid;
+  gap: 2px;
+  margin-top: 10px;
+}
+
+.photo figcaption strong {
+  font-family: var(--display);
+  font-size: 1.05rem;
+}
+
+.photo figcaption span {
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+/* Music / travel / philosophy cards */
+.interest-cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.interest-icon {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 1.8rem;
+  color: var(--accent-text);
+}
+
+/* Home-page teaser linking to the page */
+.beyond-teaser {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 64px);
+}
+
+.beyond-teaser-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.beyond-teaser-photos img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1.5px solid var(--line);
+}
+
+.beyond-teaser-photos img:nth-child(2) {
+  margin-top: 40px;
+}
+
+.beyond-teaser p {
+  margin-bottom: 24px;
+  color: var(--muted);
+}
+
+/* Half-width column, so the headline needs to be smaller than other section titles */
+.beyond-teaser .section-title {
+  margin-bottom: 24px;
+  font-size: clamp(2.2rem, 5.2vw, 4.6rem);
+}
+
 /* --- Closing call to action ------------------------------------ */
 .case-cta {
   margin-top: 40px;
@@ -2235,6 +2358,10 @@ main:focus {
 
 /* --- Case pages on smaller screens ----------------------------- */
 @media (max-width: 1000px) {
+  .interest-cards {
+    grid-template-columns: 1fr;
+  }
+
   .case-meta,
   .case-stats,
   .case-cards,
@@ -2262,6 +2389,10 @@ main:focus {
 }
 
 @media (max-width: 720px) {
+  .beyond-teaser {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .menu-gallery {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2568,6 +2699,14 @@ main:focus {
   /* Case-study pages */
   .case-nav,
   .case-cta {
+    display: none !important;
+  }
+
+  .photo-grid {
+    columns: 3;
+  }
+
+  .beyond {
     display: none !important;
   }
 
