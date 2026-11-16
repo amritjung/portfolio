@@ -24,6 +24,7 @@
  *  12. Contact email link
  *  13. Contact form
  *  13b. Load hCaptcha only when needed
+ *  13c. Music shuffle player (Beyond the code page)
  *  14. Footer year
  */
 
@@ -695,6 +696,48 @@ if (form) {
 
   captchaObserver.observe($("#contact"));
   form.addEventListener("focusin", loadCaptcha, { once: true });
+}
+
+
+/* ---------------------------------------------------------------
+ * 13c. Music shuffle player (Beyond the code page)
+ * Picks a random song from the JSON list in the page and loads a
+ * Spotify player for it. The iframe is only created on click, so
+ * Spotify isn't contacted until the visitor asks for music.
+ * ------------------------------------------------------------- */
+const shuffleButton = $("#shuffleBtn");
+
+if (shuffleButton) {
+  const tracks = JSON.parse($("#trackList").textContent);
+  const nowPlaying = $("#shuffleNow");
+  const frameBox = $("#shuffleFrame");
+  let lastIndex = -1;
+
+  shuffleButton.addEventListener("click", () => {
+    // Pick a random track, but never the same one twice in a row
+    let index;
+    do {
+      index = Math.floor(Math.random() * tracks.length);
+    } while (index === lastIndex && tracks.length > 1);
+    lastIndex = index;
+
+    const track = tracks[index];
+
+    // Only accept real Spotify ids (22 letters/numbers) before building a URL
+    if (!/^[A-Za-z0-9]{22}$/.test(track.id)) return;
+
+    const player = document.createElement("iframe");
+    player.src = `https://open.spotify.com/embed/track/${track.id}?utm_source=generator`;
+    player.title = `Spotify player: ${track.title} by ${track.artist}`;
+    player.width = "100%";
+    player.height = "152";
+    player.loading = "lazy";
+    player.allow = "clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+
+    frameBox.replaceChildren(player);
+    nowPlaying.textContent = `Now playing: ${track.title} — ${track.artist}`;
+    shuffleButton.lastChild.textContent = " Shuffle again";
+  });
 }
 
 

@@ -2346,6 +2346,42 @@ main:focus {
   color: var(--on-accent);
 }
 
+/* Music shuffle player */
+.shuffle {
+  margin-bottom: 32px;
+  padding: 22px;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.shuffle-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+}
+
+.shuffle-now {
+  color: var(--muted);
+}
+
+/* Empty until a track is loaded; the Spotify player is 152px tall */
+.shuffle-frame:not(:empty) {
+  margin-top: 18px;
+}
+
+.shuffle-frame iframe {
+  display: block;
+  border: 0;
+  border-radius: 12px;
+}
+
+.shuffle-note {
+  margin-top: 12px;
+  font-size: .8rem;
+}
+
 /* "Seen live" concert tickets */
 .seen-live {
   margin-bottom: 28px;

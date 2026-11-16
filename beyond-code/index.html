@@ -9,13 +9,15 @@
   <meta name="author" content="Amrit Thapa" />
   <link rel="canonical" href="https://amritthapa.com/beyond-code/" />
 
-  <!-- Same security policy as the other inner pages -->
+  <!-- Same security policy as the other inner pages, plus the Spotify player iframe -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'none';
     script-src 'self';
     style-src 'self';
     font-src 'self';
     img-src 'self' data:;
+    frame-src https://open.spotify.com;
+    child-src https://open.spotify.com;
     manifest-src 'self';
     form-action 'none';
     base-uri 'none';
@@ -32,7 +34,7 @@
 
   <link rel="preload" href="/assets/fonts/syne-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/styles.css?v=202611161700" />
+  <link rel="stylesheet" href="/styles.css?v=202611161800" />
 </head>
 
 <body class="case-page beyond-page">
@@ -194,6 +196,168 @@
         <li>Country</li>
       </ul>
 
+      <!--
+        Shuffle player. Nothing from Spotify loads until the visitor presses
+        the button (no third-party requests or cookies before that).
+        To change the songs, edit the list below: title, artist and the
+        Spotify track id (the part after /track/ in a Spotify link).
+      -->
+      <div class="shuffle" id="shufflePlayer">
+        <div class="shuffle-head">
+          <button type="button" class="btn btn-primary" id="shuffleBtn">
+            <span aria-hidden="true">🎲</span> Shuffle a track
+          </button>
+          <p class="shuffle-now mono" id="shuffleNow" aria-live="polite">28 songs from my favourite bands. Press shuffle, then play.</p>
+        </div>
+        <div class="shuffle-frame" id="shuffleFrame"></div>
+        <p class="case-small shuffle-note">Plays through Spotify — full songs if you're logged in, 30-second previews if not. Loading the player lets Spotify set its own cookies.</p>
+      </div>
+
+      <script type="application/json" id="trackList">
+      [
+        {
+          "title": "Thunderstruck",
+          "artist": "AC/DC",
+          "id": "0mCOE18NsRyUuozn5NtFR2"
+        },
+        {
+          "title": "The Trooper",
+          "artist": "Iron Maiden",
+          "id": "2pxAohyJptQWTQ5ZRWYijN"
+        },
+        {
+          "title": "Enter Sandman",
+          "artist": "Metallica",
+          "id": "3jV5uMDHCYVaub5AnL5OsS"
+        },
+        {
+          "title": "Anastasia",
+          "artist": "Slash ft. Myles Kennedy & The Conspirators",
+          "id": "7JJ22vCP45tMhZnAH4Sp1e"
+        },
+        {
+          "title": "Bad Boy for Love",
+          "artist": "Rose Tattoo",
+          "id": "5ZeTy3XHureg2XSlUpflWw"
+        },
+        {
+          "title": "Bring Me to Life",
+          "artist": "Evanescence",
+          "id": "7aZ0U06aZRbjvcFVeUgy5s"
+        },
+        {
+          "title": "Ace of Spades",
+          "artist": "Motörhead",
+          "id": "6EPRKhUOdiFSQwGBRBbvsZ"
+        },
+        {
+          "title": "Paranoid",
+          "artist": "Black Sabbath",
+          "id": "3L8WgDYS5TtwbyxOPSAiFf"
+        },
+        {
+          "title": "Symphony of Destruction",
+          "artist": "Megadeth",
+          "id": "4YJZjINIhakR98fnz1Pvup"
+        },
+        {
+          "title": "Walk",
+          "artist": "Pantera",
+          "id": "7fcfNW0XxTWlwVlftzfDOR"
+        },
+        {
+          "title": "Smells Like Teen Spirit",
+          "artist": "Nirvana",
+          "id": "1f3yAtsJtY87CTmM8RLnxf"
+        },
+        {
+          "title": "Alive",
+          "artist": "Pearl Jam",
+          "id": "41XyM1zCc6LexR6eBk3x9O"
+        },
+        {
+          "title": "Black Hole Sun",
+          "artist": "Soundgarden",
+          "id": "2EoOZnxNgtmZaD8uUmz2nD"
+        },
+        {
+          "title": "Man in the Box",
+          "artist": "Alice in Chains",
+          "id": "6gZVQvQZOFpzIy3HblJ20F"
+        },
+        {
+          "title": "Like a Stone",
+          "artist": "Audioslave",
+          "id": "5pgtKPzKRZnANqMxZdeMRt"
+        },
+        {
+          "title": "Everlong",
+          "artist": "Foo Fighters",
+          "id": "07q6QTQXyPRCf7GbLakRPr"
+        },
+        {
+          "title": "Whole Lotta Love",
+          "artist": "Led Zeppelin",
+          "id": "0hCB0YR03f6AmQaHbwWDe8"
+        },
+        {
+          "title": "Comfortably Numb",
+          "artist": "Pink Floyd",
+          "id": "7Fg4jpwpkdkGCvq1rrXnvx"
+        },
+        {
+          "title": "Sweet Child O' Mine",
+          "artist": "Guns N' Roses",
+          "id": "50qma2LfxTfAILyNlZEnpP"
+        },
+        {
+          "title": "Pour Some Sugar on Me",
+          "artist": "Def Leppard",
+          "id": "0PdM2a6oIjqepoEfcJo0RO"
+        },
+        {
+          "title": "Sultans of Swing",
+          "artist": "Dire Straits",
+          "id": "0aLGHkRHztDyUBAMbQUysP"
+        },
+        {
+          "title": "Dreams",
+          "artist": "Fleetwood Mac",
+          "id": "3WV03INc92Zjk70oNmZ13j"
+        },
+        {
+          "title": "Chop Suey!",
+          "artist": "System of a Down",
+          "id": "2DlHlPMa4M17kufBvI2lEN"
+        },
+        {
+          "title": "Killing in the Name",
+          "artist": "Rage Against the Machine",
+          "id": "18LRhdvaJNUjP4OVmMnShU"
+        },
+        {
+          "title": "In the End",
+          "artist": "Linkin Park",
+          "id": "60a0Rd6pjrkxjPbaKzXjfq"
+        },
+        {
+          "title": "Ho Hey",
+          "artist": "The Lumineers",
+          "id": "1jdNcAD8Ir58RlsdGjJJdx"
+        },
+        {
+          "title": "Bye Bye Love",
+          "artist": "The Everly Brothers",
+          "id": "3FOXmp6chNYA69div6UtC2"
+        },
+        {
+          "title": "Psycho Killer",
+          "artist": "Talking Heads",
+          "id": "68AJgDAbi9ry1ZVc9eh7ll"
+        }
+      ]
+      </script>
+
       <!-- Concerts I've been to — styled like tickets -->
       <div class="seen-live">
         <h3 class="seen-live-title mono">Seen live</h3>
@@ -337,6 +501,6 @@
     <a href="#main">Back to top ↑</a>
   </footer>
 
-  <script src="/script.js?v=202611161700" defer></script>
+  <script src="/script.js?v=202611161800" defer></script>
 </body>
 </html>
