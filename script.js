@@ -779,9 +779,10 @@ if (shuffleButton) {
     const player = document.createElement("iframe");
     player.src = `https://open.spotify.com/embed/track/${track.id}?utm_source=generator`;
     player.title = `Spotify player: ${track.title} by ${track.artist}`;
-    player.width = "100%";
+    // Fixed size (CSS stretches it to the full width); not lazy-loaded,
+    // because it's created on click and shown straight away
+    player.width = "300";
     player.height = "152";
-    player.loading = "lazy";
     player.allow = "clipboard-write; encrypted-media; fullscreen; picture-in-picture";
 
     frameBox.replaceChildren(player);

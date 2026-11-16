@@ -160,9 +160,12 @@ a {
   text-decoration: none;
 }
 
+/* width/height attributes on every <img> reserve space before it loads;
+   height: auto keeps the shape right when max-width shrinks it */
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 button {
@@ -2577,6 +2580,7 @@ main:focus {
 
 .shuffle-frame iframe {
   display: block;
+  width: 100%;
   border: 0;
   border-radius: 12px;
 }
